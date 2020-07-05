@@ -6,7 +6,7 @@
 
     use App\BITM\SEIPXXXX\User\User;
     use App\BITM\SEIPXXXX\User\Auth;
-    use App\BITM\SEIPXXXX\BookTitle\BookTitle;
+    use App\BITM\SEIPXXXX\Admin\Admin;
     use App\BITM\SEIPXXXX\Message\Message;
     use App\BITM\SEIPXXXX\Utility\Utility;
 
@@ -22,7 +22,7 @@
         return;
     }
 
-    $obj = new BookTitle();
+    $obj = new Admin();
 
     $allData = $obj->index();
 
@@ -90,7 +90,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Book List - All</title>
+        <title>All Admin Data</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
@@ -127,12 +127,24 @@
         </div>
 
         <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
-                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Add Book</a>
-                    <a href="index.php" class="w3-bar-item w3-button w3-black" style="text-decoration: none">Book List</a>
-                    <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none">Trash List</a>
+                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
+                    <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
+                    <a href="create_user.php" class="w3-bar-item w3-button" style="text-decoration: none">Create User</a>
+                    <div class="w3-dropdown-hover">
+                        <button class="w3-button w3-black" style="text-decoration: none">
+                            All Data List <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                            <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none">All Admin Data</a>
+                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
+                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All User Data</a>
+                        </div>
+                    </div>
+                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Registration Request</a>
+                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
+                    <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
                         <a href= "../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
                     </span>
@@ -142,10 +154,10 @@
         </div>
 
 
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="w3-panel w3-blue w3-card-4">
-                            <h2> Active List of - Book Title </h2>
+                <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-sm-3">
+                        <div class="w3-panel w3-blue w3-card-4 text-center">
+                            <h2>Admin Data List</h2>
                         </div>
                     </div>
 
@@ -153,7 +165,7 @@
 
                     <!-- required for search, block 4 of 5 start -->
                     <br><br>
-                    <div class="col-sm-5">
+                    <div class="col-sm-5" style="display: none;">
                         <div class="w3-panel">
                             <form id="searchForm" action="index.php"  method="get">
                                 <input type="text" value="" id="searchID" name="search" placeholder="Search..">
@@ -171,9 +183,16 @@
 
                 </div>
 
+
                <form id="selectionForm" action="trash_multiple.php" method="post">
 
                     <div class="row">
+                        <div class="col-sm-12" style="text-align: right;">
+                            <a href="create.php" class="btn w3-indigo w3-hover-indigo" style="text-decoration: none">Create New Admin</a>
+                        </div>
+                    </div>     
+
+                    <div class="row" style="display: none;">
 
                         <div class="col-sm-5"></div>
 
@@ -197,16 +216,16 @@
 
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="margin-top: 10px;">
                         <div class="col-sm-12">
                                 <table class="table-bordered w3-table-all w3-hoverable">
                                     <thead>
-                                    <tr class="w3-green">
-                                        <th>All <input type="checkbox" name="select_all" id="select_all"></th>
+                                    <tr class="text-center">
+                                        <th style="display: none;">All <input type="checkbox" name="select_all" id="select_all"></th>
                                         <th>Serial</th>
-                                        <th>Book ID</th>
-                                        <th>Book Title</th>
-                                        <th>Author</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -214,45 +233,30 @@
                                         foreach($someData as $row){
                                             echo "
                                                 <tr>
-                                                    <td>
+                                                    <td style='display: none;'>
                                                         <input type='checkbox' class='checkbox' name='selectedIDs[]' value='$row->id'>
                                                     </td>
                                                     <td>$serial</td>
                                                     <td>$row->id</td>
-                                                    <td>$row->book_title</td>
-                                                    <td>$row->author_name</td>
+                                                    <td>$row->admin_name</td>
+                                                    <td>$row->admin_email</td>
                                                     <td>
-                                                        <a href='view.php?id=$row->id' title='View'>
-                                                            <button type='button' class='w3-btn w3-blue w3-hover-blue' style='font-size: 20px;'>
-                                                                <span class='glyphicon glyphicon-eye-open'></span>
+                                                        <a href='view.php?id=$row->id' type='button' class='btn btn-primary'>View</a>
+                                                        <a href='edit.php?id=$row->id' type='button' class='btn btn-success'>Edit</a>
+                                                        <a href='trash.php?id=$row->id' title='Trash' style='display: none;'>
+                                                            <button type='button' class='btn btn-warning'>Trash</button>
+                                                        </a>
+                                                        <a href='delete.php?id=$row->id' type='button' onclick='return confirm_delete()' class='btn btn-danger'>Delete</a>
+                                                        <a href='email.php?id=$row->id' title='Email' style='display: none;'>
+                                                            <button type='button' class='w3-btn w3-teal w3-hover-teal w3-text-white w3-hover-text-white'>
+                                                                <i class='material-icons'>mail</i>
                                                             </button>
                                                         </a>
-                                                        <a href='edit.php?id=$row->id' title='Edit'>
-                                                            <button type='button' class='w3-btn w3-indigo w3-hover-indigo'>
-                                                                <i class='material-icons'>edit</i>
-                                                            </button>
-                                                        </a>
-                                                        <a href='trash.php?id=$row->id' title='Trash'>
-                                                                <button type='button' class='w3-btn w3-orange w3-hover-orange w3-text-white w3-hover-text-white'>
-                                                                    <i class='material-icons'>delete_forever</i>
-                                                                </button>
-                                                            </a>
-                                                        <a href='delete.php?id=$row->id' title='Delete'>
-                                                                <button type='button' onclick='return confirm_delete()' class='w3-btn w3-red w3-hover-red'>
-                                                                    <i class='material-icons'>content_cut</i>
-                                                                </button>
-                                                            </a>
-                                                            <a href='email.php?id=$row->id' title='Email'>
-                                                                <button type='button' class='w3-btn w3-teal w3-hover-teal w3-text-white w3-hover-text-white'>
-                                                                    <i class='material-icons'>mail</i>
-                                                                </button>
-                                                            </a>
                                                     </td>
                                                 </tr>
                                             ";
                                             $serial++;
                                         } //end of foreach loop
-
                                     ?>
                                 </table>
                             </div>

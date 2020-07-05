@@ -6,19 +6,20 @@
  * Time: 1:38 PM
  */
 
-namespace App\BITM\SEIPXXXX\BookTitle;
+namespace App\BITM\SEIPXXXX\Admin;
 
 use App\BITM\SEIPXXXX\Message\Message;
 use App\BITM\SEIPXXXX\Model\Database;
 use App\BITM\SEIPXXXX\Utility\Utility;
 use PDO;
 
-class BookTitle extends Database
+class Admin extends Database
 {
 
     public $id;
-    public $bookTitle;
-    public $authorName;
+    public $adminName;
+    public $adminEmail;
+    public $adminPassword;
 
 
     public function setData($postArray){
@@ -27,20 +28,26 @@ class BookTitle extends Database
             $this->id = $postArray['id'];
         }
 
-        if(array_key_exists("bookTitle",$postArray)){
-            $this->bookTitle = $postArray['bookTitle'];
+        if(array_key_exists("adminName",$postArray)){
+            $this->adminName = $postArray['adminName'];
         }
 
-        if(array_key_exists("authorName",$postArray)){
-            $this->authorName = $postArray['authorName'];
+        if(array_key_exists("adminEmail",$postArray)){
+            $this->adminEmail = $postArray['adminEmail'];
+        }
+
+        if(array_key_exists("adminPassword",$postArray)){
+            $this->adminPassword = $postArray['adminPassword'];
         }
     } // end of setData()
 
     public function store(){
 
-        $query = "INSERT INTO `tbl_book_title` (`book_title`, `author_name`) VALUES (?, ?);";
+        $query = "INSERT INTO `tbl_book_title` (`admin_name`, `admin_email`, `admin_password`) VALUES (?, ?, ?);";
 
-        $dataArray = array($this->bookTitle, $this->authorName);
+        // Utility::dd($query);
+
+        $dataArray = array($this->adminName, $this->adminEmail, $this->adminPassword);
 
         $STH = $this->DBH->prepare($query);
         $result = $STH->execute($dataArray);
@@ -79,11 +86,11 @@ class BookTitle extends Database
 
     public function update(){
 
-        $query = "UPDATE `tbl_book_title` SET `book_title` = ?,`author_name` = ? WHERE `id` = $this->id;";
+        $query = "UPDATE `tbl_book_title` SET `admin_name` = ?, `admin_email` = ?, `admin_password` = ? WHERE `id` = $this->id;";
 
        //Utility::dd($query);
 
-        $dataArray = array($this->bookTitle, $this->authorName);
+        $dataArray = array($this->adminName, $this->adminEmail, $this->adminPassword);
 
         $STH = $this->DBH->prepare($query);
         $result = $STH->execute($dataArray);
@@ -164,9 +171,9 @@ class BookTitle extends Database
 
     public function search($requestArray){
         $sql = "";
-        if( isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND (`book_title` LIKE '%".$requestArray['search']."%' OR `author_name` LIKE '%".$requestArray['search']."%')";
-        if(isset($requestArray['byTitle']) && !isset($requestArray['byAuthor']) ) $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND `book_title` LIKE '%".$requestArray['search']."%'";
-        if(!isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND `author_name` LIKE '%".$requestArray['search']."%'";
+        if( isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND (`admin_name` LIKE '%".$requestArray['search']."%' OR `admin_email` LIKE '%".$requestArray['search']."%')";
+        if(isset($requestArray['byTitle']) && !isset($requestArray['byAuthor']) ) $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND `admin_name` LIKE '%".$requestArray['search']."%'";
+        if(!isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND `admin_email` LIKE '%".$requestArray['search']."%'";
 
         $STH  = $this->DBH->query($sql);
         $STH->setFetchMode(PDO::FETCH_OBJ);
@@ -185,13 +192,13 @@ class BookTitle extends Database
         $allData = $this->index();
 
         foreach ($allData as $oneData) {
-            $_allKeywords[] = trim($oneData->book_title);
+            $_allKeywords[] = trim($oneData->admin_name);
         }
 
 
         foreach ($allData as $oneData) {
 
-            $eachString= strip_tags($oneData->book_title);
+            $eachString= strip_tags($oneData->admin_name);
             $eachString=trim( $eachString);
             $eachString= preg_replace( "/\r|\n/", " ", $eachString);
             $eachString= str_replace("&nbsp;","",  $eachString);
@@ -211,13 +218,13 @@ class BookTitle extends Database
         $allData = $this->index();
 
         foreach ($allData as $oneData) {
-            $_allKeywords[] = trim($oneData->author_name);
+            $_allKeywords[] = trim($oneData->admin_email);
         }
         $allData = $this->index();
 
         foreach ($allData as $oneData) {
 
-            $eachString= strip_tags($oneData->author_name);
+            $eachString= strip_tags($oneData->admin_email);
             $eachString=trim( $eachString);
             $eachString= preg_replace( "/\r|\n/", " ", $eachString);
             $eachString= str_replace("&nbsp;","",  $eachString);
@@ -294,4 +301,4 @@ class BookTitle extends Database
 
 
 
-} //end of BookTitle Class
+} //end of Admin Class

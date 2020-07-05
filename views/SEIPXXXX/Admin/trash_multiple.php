@@ -1,10 +1,10 @@
 <?php
 require_once ("../../../vendor/autoload.php");
 use App\BITM\SEIPXXXX\Utility\Utility;
-use App\BITM\SEIPXXXX\BookTitle\BookTitle;
+use App\BITM\SEIPXXXX\Admin\Admin;
 
 
-$obj = new BookTitle();
+$obj = new Admin();
 
 $IDs = $_POST['selectedIDs'];
 

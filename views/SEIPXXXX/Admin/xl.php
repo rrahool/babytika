@@ -1,7 +1,7 @@
 <?php
 include_once ('../../../vendor/autoload.php');
-use App\BITM\SEIPXXXX\BookTitle\BookTitle;
-$obj= new BookTitle();
+use App\BITM\SEIPXXXX\Admin\Admin;
+$obj= new Admin();
 $allData=$obj->index();
 
 /** Error reporting */

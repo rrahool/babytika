@@ -2,7 +2,7 @@
 
     require_once "../../../vendor/autoload.php";
 
-    use App\BITM\SEIPXXXX\BookTitle\BookTitle;
+    use App\BITM\SEIPXXXX\Admin\Admin;
     use App\BITM\SEIPXXXX\Message\Message;
     use App\BITM\SEIPXXXX\Utility\Utility;
 
@@ -12,7 +12,7 @@
         Utility::redirect("index.php");
     }
 
-    $obj = new BookTitle();
+    $obj = new Admin();
 
     $obj->setData($_GET);
 
@@ -24,17 +24,41 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Book List - Single</title>
+        <title>Admin Info - Single</title>
         <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
         <script src="../../../resource/assets/bootstrap/js/jquery.js"></script>
         <script src="../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../../../resource/assets/font-awesome-4.7.0/css/font-awesome.min.css">
 
     </head>
     <body>
 
-
+    <div class="container">
+        <div class="col-md-12">
+            <div class="w3-bar w3-border w3-light-grey">
+                        <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
+                        <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
+                        <a href="create_user.php" class="w3-bar-item w3-button" style="text-decoration: none">Create User</a>
+                        <div class="w3-dropdown-hover">
+                            <button class="w3-button" style="text-decoration: none">
+                                All Data List <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">All Admin Data</a>
+                                <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
+                                <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All User Data</a>
+                            </div>
+                        </div>
+                        <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
+                        <span style="text-align: right">
+                            <a href= "../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
+                        </span>
+            </div>
+        </div>
+    </div>
     <div class="w3-container">
+        
         <div class="w3-row">
             <div style="min-height: 100px;"></div>
             <div class="w3-container w3-quarter"></div>
@@ -42,17 +66,21 @@
             <div class="w3-card-4 w3-half">
 
                 <header class="w3-container w3-blue">
-                    <h2>Single Book Information - Book Title</h2>
+                    <h2>Admin Profile Info</h2>
                 </header>
 
                 <?php
                     echo "
+                        <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
+                            <a href='edit.php?id=$singleData->id' type='button' class='btn btn-primary'>Edit Info</a>
+                        </div>
                         <ul class='w3-ul w3-card-4'>
                             <li class='w3-padding-64'>
+                                <p>Photo</p>
                                 <img src='../../../images/shatkahon.jpg' class='w3-left w3-round w3-margin-right' style='width:120px; height: 150px'>
-                                <span class='w3-badge w3-red'>$singleData->id</span><br>
-                                <span class='w3-xxlarge'>$singleData->book_title</span><br>
-                                <span class='w3-large'>$singleData->author_name</span>
+                                <span class='w3-label-lg w3-red' style='padding: 5px'>ID - $singleData->id</span><br>
+                                <span class='w3-xxlarge'>$singleData->admin_name</span><br>
+                                <span class='w3-large'>$singleData->admin_email</span>
                             </li>
                         </ul>
                     ";
@@ -82,11 +110,11 @@
 //                                </tr>
 //                                <tr>
 //                                    <td>Book Title: </td>
-//                                    <td>$singleData->book_title</td>
+//                                    <td>$singleData->admin_name</td>
 //                                </tr>
 //                                <tr>
 //                                    <td>Author: </td>
-//                                    <td>$singleData->author_name</td>
+//                                    <td>$singleData->admin_email</td>
 //                                </tr>
 //";
                     ?>

@@ -1,9 +1,9 @@
 <?php
 include_once ('../../../vendor/autoload.php');
-use App\BITM\SEIPXXXX\BookTitle\BookTitle;
+use App\BITM\SEIPXXXX\Admin\Admin;
 
-$obj= new BookTitle();
-$allData=$obj->trashList();
+$obj= new Admin();
+$allData=$obj->index();
 //var_dump($allData);
 $trs="";
 $sl=0;
@@ -57,4 +57,4 @@ $mpdf = new mPDF();
 $mpdf->WriteHTML($html);
 
 // Output a PDF file directly to the browser
-$mpdf->Output('BookTitle - TrashList.pdf', 'D');
+$mpdf->Output('Admin.pdf', 'D');
