@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2020 at 09:56 PM
+-- Generation Time: Jul 05, 2020 at 03:18 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -58,8 +58,9 @@ INSERT INTO `tbl_birthday` (`id`, `name`, `dob`, `is_trashed`) VALUES
 
 CREATE TABLE `tbl_book_title` (
   `id` int(11) NOT NULL,
-  `book_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `author_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `admin_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `admin_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `admin_password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `book_image` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `is_trashed` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -68,37 +69,20 @@ CREATE TABLE `tbl_book_title` (
 -- Dumping data for table `tbl_book_title`
 --
 
-INSERT INTO `tbl_book_title` (`id`, `book_title`, `author_name`, `book_image`, `is_trashed`) VALUES
-(4, 'à¦¹à¦¿à¦®à§ à¦¸à¦®à¦—à§à¦°', 'à¦¹à§à¦®à¦¾à§Ÿà§‚à¦¨ à¦†à¦¹à¦®à§‡à¦¦', 'himu_sm_1.jpg', '2020-07-04 13:28:50'),
-(5, 'à¦°à§‹à¦² à¦¨à¦®à§à¦¬à¦° à§§à§©', 'à¦¸à§à¦®à¦¨à§à¦¤ à¦†à¦¸à¦²à¦¾à¦®', '', '2020-07-05 00:45:15'),
-(6, 'à¦¶à§à¦°à§€à¦•à¦¾à¦¨à§à¦¤', 'â€Žà¦¶à¦°à§Žà¦šà¦¨à§à¦¦à§à¦° à¦šà¦Ÿà§à¦Ÿà§‹à¦ªà¦¾à¦§à§à¦¯à¦¾à¦¯à¦¼', '', '2020-07-05 00:45:15'),
-(7, 'à¦¶à§‡à¦· à¦¬à¦¿à¦•à§‡à¦²à§‡à¦° à¦®à§‡à§Ÿà§‡', 'à¦œà¦¹à¦¿à¦° à¦°à¦¾à§Ÿà¦¹à¦¾à¦¨', '', '2020-07-05 00:45:15'),
-(8, 'Shatkahon', 'Shamaresh Mazumder', 'shatkahon.jpg', 'No'),
-(9, 'HabiJabi Series', 'Rahul Biswas', '', '2017-06-12 11:32:09'),
-(10, 'à¦…à¦¸à¦®à¦¾à¦ªà§à¦¤', 'à¦¸à§à¦¨à§€à¦² à¦—à¦™à§à¦—à§‹à¦ªà¦¾à¦§à§à¦¯à¦¾à§Ÿ', '', '2020-07-05 00:45:15'),
-(11, 'Adventure of Sherlock Holmes', 'Sir Aurthur Canon Doyle', 'sherlock.jpg', 'No'),
-(12, 'Feluda', 'Satyajit Rai', '', 'No'),
-(13, 'à¦¶à§‡à¦·à§‡à¦° à¦•à¦¬à¦¿à¦¤à¦¾', 'à¦°à¦¬à§€à¦¨à§à¦¦à§à¦°à¦¨à¦¾à¦¥ à¦ à¦¾à¦•à§à¦°', '', '2020-07-05 00:45:15'),
-(14, 'à¦¦à¦¸à§à¦¯à¦¿ à¦•\'à¦œà¦¨', 'à¦®à§à¦¹à¦®à§à¦®à¦¦ à¦œà¦¾à¦«à¦° à¦‡à¦•à¦¬à¦¾à¦²', '', '2020-07-05 00:45:15'),
-(15, 'à¦œà§à¦¯à§‹à§Žà¦¸à§à¦¨à¦¾à§Ÿ à¦¬à¦°à§à¦·à¦¾à¦° à¦®à§‡à¦˜', 'à¦¸à¦®à¦°à§‡à¦¶ à¦®à¦œà§à¦®à¦¦à¦¾à¦°', '', '2020-07-05 00:45:16'),
-(16, 'à¦­à¦¾à¦²à§‹à¦¬à¦¾à¦¸à¦¾', 'à¦¶à§€à¦°à§à¦·à§‡à¦¨à§à¦¦à§ à¦®à§à¦–à§‹à¦ªà¦¾à¦§à§à¦¯à¦¾à§Ÿ', '', '2020-07-05 00:45:16'),
-(17, 'à¦…à¦ªà§à¦° à¦¸à¦‚à¦¸à¦¾à¦°', 'à¦¸à¦¤à§à¦¯à¦œà¦¿à§Ž à¦°à¦¾à§Ÿ', '', '2020-07-05 00:45:16'),
-(18, 'à¦¹à§€à¦°à§‡ à¦¬à¦¸à¦¾à¦¨à§‹ à¦¸à§‹à¦¨à¦¾à¦° à¦«à§à¦²', 'à¦¸à¦®à¦°à§‡à¦¶ à¦®à¦œà§à¦®à¦¦à¦¾à¦°', '', '2020-07-05 00:45:16'),
-(20, 'yjdydghx', 'srtsrfr4', '', '2020-07-05 00:45:16'),
-(21, 'dxzgfg', 'rsgtsrzgtr', '', '2017-06-14 12:40:05'),
-(22, 'wstrrws', 'rtewsrtf', '', '2017-06-14 12:40:05'),
-(23, 'rtgrtg', 'ertew', '', '2017-06-14 12:40:05'),
-(24, 'ewtfwerst', 'etfrrwsetf', '', '2017-06-14 12:40:26'),
-(25, 'erwterwt', 'erwterwtf', '', '2017-06-14 12:40:38'),
-(26, 'ewrewr', 'hgffh', '', '2017-06-14 12:40:38'),
-(27, 'we5rw', 'sterws', '', '2017-06-14 12:40:38'),
-(28, 'trutry', 'rte4ert', '', '2017-06-14 12:40:56'),
-(29, 'et5ert', 'eryt5ert', '', '2020-07-05 00:45:16'),
-(30, 'erytert', 'yruhryth', '', '2017-06-14 23:21:08'),
-(31, 'rter', 'gfrrt', '', '2020-07-05 00:45:16'),
-(32, 'rtgr', 'rstgr', '', '2017-06-14 23:21:16'),
-(33, 'And then there were none', 'Agatha Christie', '', 'No'),
-(34, 'Maa', 'Anisul Haque', '', '2020-07-05 01:41:40');
+INSERT INTO `tbl_book_title` (`id`, `admin_name`, `admin_email`, `admin_password`, `book_image`, `is_trashed`) VALUES
+(20, 'yjdydghx', 'srtsrfr4', '', '', '2020-07-05 00:45:16'),
+(21, 'dxzgfg', 'rsgtsrzgtr', '', '', '2017-06-14 12:40:05'),
+(22, 'wstrrws', 'rtewsrtf', '', '', '2017-06-14 12:40:05'),
+(26, 'ewrewr', 'hgffh', '', '', '2017-06-14 12:40:38'),
+(28, 'trutry', 'rte4ert', '', '', '2017-06-14 12:40:56'),
+(29, 'et5ert', 'eryt5ert', '', '', '2020-07-05 00:45:16'),
+(30, 'erytert', 'yruhryth', '', '', '2017-06-14 23:21:08'),
+(31, 'rter', 'gfrrt', '', '', '2020-07-05 00:45:16'),
+(32, 'rtgr', 'rstgr', '', '', '2017-06-14 23:21:16'),
+(35, 'Tanjil', 'tanjil@gmail.com', '112233', '', 'No'),
+(36, 'John Doe', 'john@doe.com', '123456', '', 'No'),
+(37, 'Mary Jane', 'mary.jane@yahoo.com', '112233', '', 'No'),
+(38, 'Thomas Shelby', 'thomas@outlook.com', '112233', '', 'No');
 
 -- --------------------------------------------------------
 
@@ -291,7 +275,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `email_verified`) VALUES
 (19, 'asfds', 'sdfgs', 'x@y.z', '202cb962ac59075b964b07152d234b70', '4545', 'sfsj', '4ae15d1c46f25be8db9d07061463c5f0'),
 (23, 'Rahul', 'Biswas', 'rbiswas596@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '+8801812743059', 'Chattogram', 'Yes'),
-(24, 'Rahul', 'Biswas', 'rbiswas1802@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'Chattogram', 'Yes');
+(24, 'Tanjil', 'Islam', 'tanjil.ctg01@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'Chattogram', 'Yes');
 
 --
 -- Indexes for dumped tables
@@ -359,7 +343,7 @@ ALTER TABLE `tbl_birthday`
 -- AUTO_INCREMENT for table `tbl_book_title`
 --
 ALTER TABLE `tbl_book_title`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tbl_cities`

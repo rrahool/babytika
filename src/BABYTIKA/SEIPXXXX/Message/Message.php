@@ -1,5 +1,5 @@
 <?php
-namespace App\BITM\SEIPXXXX\Message;
+namespace App\BABYTIKA\SEIPXXXX\Message;
 if(!isset($_SESSION['message']) )session_start();
 
 class Message{

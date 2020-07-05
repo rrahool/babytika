@@ -1,7 +1,7 @@
 <?php
-namespace App\BITM\SEIPXXXX\User;
+namespace App\BABYTIKA\SEIPXXXX\User;
 if(!isset($_SESSION) )  session_start();
-use App\BITM\SEIPXXXX\Model\Database as DB;
+use App\BABYTIKA\SEIPXXXX\Model\Database as DB;
 use PDO;
 
 class Auth extends DB{

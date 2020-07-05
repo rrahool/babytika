@@ -1,6 +1,6 @@
 <?php
 include_once ('../../../vendor/autoload.php');
-use App\BITM\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Admin\Admin;
 
 $obj= new Admin();
 $allData=$obj->trashList();
@@ -22,7 +22,7 @@ foreach($allData as $row) {
     $trs .= "</tr>";
 }
 
-$html= <<<BITM
+$html= <<<BABYTIKA
 <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -42,9 +42,9 @@ $html= <<<BITM
             </table>
 
 
-BITM;
+BABYTIKA;
 
-//\App\BITM\SEIPXXXX\Utility\Utility::dd($html);
+//\App\BABYTIKA\SEIPXXXX\Utility\Utility::dd($html);
 
 // Require composer autoload
 require_once ('../../../vendor/mpdf/mpdf/mpdf.php');

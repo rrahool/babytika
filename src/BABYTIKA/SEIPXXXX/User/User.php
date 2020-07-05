@@ -1,10 +1,10 @@
 <?php
 
-namespace App\BITM\SEIPXXXX\User;
+namespace App\BABYTIKA\SEIPXXXX\User;
 
-use App\BITM\SEIPXXXX\Message\Message;
-use App\BITM\SEIPXXXX\Utility\Utility;
-use App\BITM\SEIPXXXX\Model\Database as DB;
+use App\BABYTIKA\SEIPXXXX\Message\Message;
+use App\BABYTIKA\SEIPXXXX\Utility\Utility;
+use App\BABYTIKA\SEIPXXXX\Model\Database as DB;
 use PDO;
 
 

@@ -11,8 +11,8 @@ session_start();
 include_once('../../../vendor/autoload.php');
 require '../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
-use App\BITM\SEIPXXXX\Admin\Admin;
-use App\BITM\SEIPXXXX\Message\Message;
+use App\BABYTIKA\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Message\Message;
 
 $bookTitle = new Admin();
 
@@ -182,9 +182,9 @@ else
             //Password to use for SMTP authentication
             $mail->Password = $yourGmailPassword;
             //Set who the message is to be sent from
-            $mail->setFrom($yourGmailAddress, 'BITM PHP');
+            $mail->setFrom($yourGmailAddress, 'BABYTIKA PHP');
             //Set an alternative reply-to address
-            $mail->addReplyTo($yourGmailAddress, 'BITM PHP');
+            $mail->addReplyTo($yourGmailAddress, 'BABYTIKA PHP');
             //Set who the message is to be sent to
 
             //echo $_REQUEST['email']; die();

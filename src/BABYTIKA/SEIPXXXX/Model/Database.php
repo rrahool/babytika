@@ -1,5 +1,5 @@
 <?php
-namespace App\BITM\SEIPXXXX\Model;
+namespace App\BABYTIKA\SEIPXXXX\Model;
 
 use PDO;
 use PDOException;

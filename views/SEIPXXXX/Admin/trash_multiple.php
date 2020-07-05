@@ -1,7 +1,7 @@
 <?php
 require_once ("../../../vendor/autoload.php");
-use App\BITM\SEIPXXXX\Utility\Utility;
-use App\BITM\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Utility\Utility;
+use App\BABYTIKA\SEIPXXXX\Admin\Admin;
 
 
 $obj = new Admin();

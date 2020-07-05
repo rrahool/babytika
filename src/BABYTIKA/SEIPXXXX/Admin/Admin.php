@@ -6,11 +6,11 @@
  * Time: 1:38 PM
  */
 
-namespace App\BITM\SEIPXXXX\Admin;
+namespace App\BABYTIKA\SEIPXXXX\Admin;
 
-use App\BITM\SEIPXXXX\Message\Message;
-use App\BITM\SEIPXXXX\Model\Database;
-use App\BITM\SEIPXXXX\Utility\Utility;
+use App\BABYTIKA\SEIPXXXX\Message\Message;
+use App\BABYTIKA\SEIPXXXX\Model\Database;
+use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 use PDO;
 
 class Admin extends Database

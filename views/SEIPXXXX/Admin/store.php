@@ -2,8 +2,8 @@
 
 require_once "../../../vendor/autoload.php";
 
-use App\BITM\SEIPXXXX\Admin\Admin;
-use App\BITM\SEIPXXXX\Utility\Utility;
+use App\BABYTIKA\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 
 $objAdmin = new Admin();
 

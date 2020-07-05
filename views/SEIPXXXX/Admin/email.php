@@ -11,8 +11,8 @@ session_start();
 include_once('../../../vendor/autoload.php');
 require '../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
-use App\BITM\SEIPXXXX\Admin\Admin;
-use App\BITM\SEIPXXXX\Message\Message;
+use App\BABYTIKA\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Message\Message;
 
 $bookTitle = new Admin();
 

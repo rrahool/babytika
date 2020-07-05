@@ -1,5 +1,5 @@
 <?php
-namespace App\BITM\SEIPXXXX\Utility;
+namespace App\BABYTIKA\SEIPXXXX\Utility;
 
 class Utility{
     public static function d($data){

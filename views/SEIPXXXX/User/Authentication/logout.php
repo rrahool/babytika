@@ -1,10 +1,10 @@
 <?php
 if(!isset($_SESSION) )session_start();
 include_once('../../../../vendor/autoload.php');
-use App\BITM\SEIPXXXX\User\User;
-use App\BITM\SEIPXXXX\User\Auth;
-use App\BITM\SEIPXXXX\Message\Message;
-use App\BITM\SEIPXXXX\Utility\Utility;
+use App\BABYTIKA\SEIPXXXX\User\User;
+use App\BABYTIKA\SEIPXXXX\User\Auth;
+use App\BABYTIKA\SEIPXXXX\Message\Message;
+use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 
 
 $auth= new Auth();

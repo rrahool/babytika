@@ -2,7 +2,7 @@
 include_once('../../../../vendor/autoload.php');
 
    if(!isset($_SESSION) )session_start();
-use App\BITM\SEIPXXXX\Message\Message;
+use App\BABYTIKA\SEIPXXXX\Message\Message;
 
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 include_once ('../../../vendor/autoload.php');
-use App\BITM\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Admin\Admin;
 $obj= new Admin();
 $allData=$obj->trashList();
 
