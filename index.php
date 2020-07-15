@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Moderator Panel</h4>
                         <a href="views/SEIPXXXX/User/Profile/signup_moderator.php" class="btn btn-primary btn-lg btn-block">Login</a>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
