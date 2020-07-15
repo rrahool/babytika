@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2020 at 03:18 PM
+-- Generation Time: Jul 15, 2020 at 05:01 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -21,6 +21,75 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_atomic_project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `moderator`
+--
+
+CREATE TABLE `moderator` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(111) NOT NULL,
+  `last_name` varchar(111) NOT NULL,
+  `email` varchar(111) NOT NULL,
+  `password` varchar(111) NOT NULL,
+  `phone` varchar(111) NOT NULL,
+  `address` varchar(333) NOT NULL,
+  `email_verified` varchar(111) DEFAULT NULL,
+  `status` varchar(111) NOT NULL DEFAULT 'Pending',
+  `is_trashed` varchar(255) NOT NULL DEFAULT 'No'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `moderator`
+--
+
+INSERT INTO `moderator` (`id`, `first_name`, `last_name`, `email`, `password`, `phone`, `address`, `email_verified`, `status`, `is_trashed`) VALUES
+(27, 'Rahul', 'Biswas', 'rbiswas1802@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'Ctg', 'Yes', 'Active', 'No'),
+(31, 'Camila', 'Cabelo', 'cam@cab.co', 'd0970714757783e6cf17b26fb8e2298f', '39258147', 'Mexico', 'Yes', 'Pending', 'No'),
+(32, 'Charlie', 'Puth', 'charlie@puth.com', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'NY', '1dc533994b21b381425d95bedeb66121', 'Pending', 'No'),
+(36, 'Ed', 'Shereen', 'ed@shereen.com', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'London', '1b7f81d39c1bd6831dc86b3c5bbf8a8b', 'Pending', 'No'),
+(37, 'Clean', 'Bandit', 'clean@bandit.com', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'California', 'Yes', 'Active', 'No'),
+(38, 'zara', 'liason', 'zara@lia.zl', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'Manhattan', 'e2abbc193efd4eb154c726a8f9a7441b', 'Pending', 'No'),
+(39, 'Kuddus', 'Mia', 'kuddus@mia.km', 'd0970714757783e6cf17b26fb8e2298f', '987456123', 'Faridpur', 'c2435a5f96068b11e4322609fc1df11d', 'Pending', 'No'),
+(40, 'Sakhina', 'Khatun', 'sakhina@k.sk', 'd0970714757783e6cf17b26fb8e2298f', '456789321', 'Patuakhali', '88a408cafad614ff681d60ce8325f16a', 'Pending', 'No'),
+(44, 'Rahul', 'Biswas', 'rbiswas596@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', '11245678', 'Ctg', 'Yes', 'Active', 'No'),
+(46, 'Jafar', 'Iqbal', 'jafar@iqbal.jj', 'd0970714757783e6cf17b26fb8e2298f', '666441235', 'Chattogram', 'ed61569220f256e9231cf0f03c2bbe2a', 'Pending', 'No'),
+(52, 'Sukanta', 'Bhattacharya', 'sukanta@skb.co', 'd0970714757783e6cf17b26fb8e2298f', '45622145', 'Kolkata', 'Yes', 'Active', 'No'),
+(53, 'Rabindranath', 'Thakur', 'rabi@thakur.rco', 'd0970714757783e6cf17b26fb8e2298f', '6655432156', 'Khulna', 'Yes', 'Active', 'No'),
+(54, 'Justine', 'Timberlake', 'justine@tim.jut', 'd0970714757783e6cf17b26fb8e2298f', '55651235', 'LA', 'fb38e121e94abca83559c44d307d55f0', 'Pending', 'No'),
+(57, 'AA', 'BB', 'rrahoolessence209@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', '5656565', 'Ctg', '97b3d8d9b1a1879d20f7cb1deb7342c1', 'Pending', 'No');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mother`
+--
+
+CREATE TABLE `mother` (
+  `id` int(11) NOT NULL,
+  `M_Name` varchar(255) NOT NULL,
+  `M_Email` varchar(255) NOT NULL,
+  `M_Cell` varchar(255) NOT NULL,
+  `M_User` varchar(255) NOT NULL,
+  `M_Blood` varchar(255) NOT NULL,
+  `M_Week` int(11) NOT NULL,
+  `M_Pass` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mother`
+--
+
+INSERT INTO `mother` (`id`, `M_Name`, `M_Email`, `M_Cell`, `M_User`, `M_Blood`, `M_Week`, `M_Pass`) VALUES
+(1, 'Mary Jane', 'mary@jane.co', '123456789', '987654321', 'O+', 4, '112233'),
+(2, 'Rita Ora', 'rita@ora.co', '45323223', '96523237', 'A-', 3, '112233'),
+(3, 'Angelina', 'angel@gg.co', '3321456912', '8763413211', 'AB+', 5, '112233'),
+(4, 'Ann Marie', 'ann@marie.am', '4213567774', '1456223123', 'B+', 4, '112233'),
+(5, 'Dua Lipa', 'dua.lipa@dl.co', '6321456319', '5462315523', 'AB-', 5, '112233'),
+(6, 'Salena Gomez', 'salena@gom.sg', '996452123', '885641234', 'A+', 4, '112233'),
+(7, 'tanjil', 'tanjil.ctg01@gmail.com', '01836245719', '01616557756', 'B+', 2, '11223344');
 
 -- --------------------------------------------------------
 
@@ -149,7 +218,8 @@ INSERT INTO `tbl_gender` (`id`, `name`, `gender`, `is_trashed`) VALUES
 (11, 'rtgertg', 'Female', '2017-06-16 02:55:54'),
 (12, 'rtgeetger', 'Male', '2017-06-16 02:55:54'),
 (13, 'tgretg', 'Female', 'No'),
-(14, 'rtgg', 'Male', 'No');
+(14, 'rtgg', 'Male', 'No'),
+(15, 'abab', 'Male', 'No');
 
 -- --------------------------------------------------------
 
@@ -277,9 +347,46 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phon
 (23, 'Rahul', 'Biswas', 'rbiswas596@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '+8801812743059', 'Chattogram', 'Yes'),
 (24, 'Tanjil', 'Islam', 'tanjil.ctg01@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', '12345678900', 'Chattogram', 'Yes');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vaccine`
+--
+
+CREATE TABLE `vaccine` (
+  `id` int(11) NOT NULL,
+  `cell` varchar(255) NOT NULL,
+  `pdate` date NOT NULL,
+  `ndate` date NOT NULL,
+  `number` int(11) NOT NULL,
+  `numbers` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vaccine`
+--
+
+INSERT INTO `vaccine` (`id`, `cell`, `pdate`, `ndate`, `number`, `numbers`) VALUES
+(1, '01836245719', '2020-07-14', '2020-07-14', 3, 1),
+(2, '01836245719', '2020-03-01', '2020-03-01', 1, 3),
+(3, '01836245719', '2020-05-12', '2020-05-12', 2, 3),
+(4, '01836245719', '2020-07-14', '2021-07-13', 4, 2);
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `moderator`
+--
+ALTER TABLE `moderator`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mother`
+--
+ALTER TABLE `mother`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_birthday`
@@ -330,8 +437,26 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `vaccine`
+--
+ALTER TABLE `vaccine`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `moderator`
+--
+ALTER TABLE `moderator`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `mother`
+--
+ALTER TABLE `mother`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_birthday`
@@ -355,7 +480,7 @@ ALTER TABLE `tbl_cities`
 -- AUTO_INCREMENT for table `tbl_gender`
 --
 ALTER TABLE `tbl_gender`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_hobbies`
@@ -380,6 +505,12 @@ ALTER TABLE `tbl_summary`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `vaccine`
+--
+ALTER TABLE `vaccine`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,7 +1,8 @@
 <?php
 include_once('../../../../vendor/autoload.php');
 
-   if(!isset($_SESSION) )session_start();
+if (!isset($_SESSION)) session_start();
+
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 
 
@@ -15,7 +16,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Signing up as customer!</title>
+    <title>Sign Up | Login Moderator</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -39,23 +40,24 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
     <link rel="apple-touch-icon-precomposed" href="../../../../resource/assets/ico/apple-touch-icon-57-precomposed.png">
 
 </head>
+
 <body>
-<!-- Top content -->
-<div class="top-content">
-        <div class="container" >
+    <!-- Top content -->
+    <div class="top-content">
+        <div class="container">
             <table>
                 <tr>
-                    <td width='230' >
+                    <td width='230'>
 
-                    <td width='600' height="50" >
+                    <td width='600' height="50">
 
 
-                        <?php  if(isset($_SESSION['message']) )if($_SESSION['message']!=""){ ?>
+                        <?php if (isset($_SESSION['message'])) if ($_SESSION['message'] != "") { ?>
 
-                            <div  id="message" class="form button"   style="font-size: smaller  " >
-                                      <center>
-                                    <?php if((array_key_exists('message',$_SESSION)&& (!empty($_SESSION['message'])))) {
-                                        echo "&nbsp;".Message::message();
+                            <div id="message" class="form button" style="font-size: smaller">
+                                <center>
+                                    <?php if ((array_key_exists('message', $_SESSION) && (!empty($_SESSION['message'])))) {
+                                        echo "&nbsp;" . Message::message();
                                     }
                                     Message::message(NULL);
                                     ?></center>
@@ -65,7 +67,11 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
                 </tr>
             </table>
 
-            <div class="row" >
+            <div class="row">
+                <a href="../../../../index.php">Choose Panel to Login</a>
+            </div>
+
+            <div class="row">
                 <div class="col-sm-5">
                     <div class="form-box" style="margin-top: 0%">
                         <div class="form-top">
@@ -78,7 +84,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
                             </div>
                         </div>
                         <div class="form-bottom">
-                            <form role="form" action="../Authentication/login.php" method="post" class="login-form">
+                            <form role="form" action="../Authentication/moderator_login.php" method="post" class="login-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="email">Email</label>
                                     <input type="text" name="email" placeholder="Email..." class="form-email form-control" id="form-email">
@@ -115,7 +121,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
 
                 <div class="col-sm-5">
 
-                    <div class="form-box" style="margin-top: 0%; display: none;">
+                    <div class="form-box" style="margin-top: 0%;">
                         <div class="form-top">
                             <div class="form-top-left">
                                 <h3>Sign up now</h3>
@@ -150,7 +156,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="address">Address</label>
-				                        	<input type="text" name="address" placeholder="Address..." class="form-address form-control" id="form-address">
+                                    <input type="text" name="address" placeholder="Address..." class="form-address form-control" id="form-address">
                                 </div>
                                 <button type="submit" class="btn">Sign me up!</button>
                             </form>
@@ -164,21 +170,21 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
     </div>
 
 
-<!-- Javascript -->
-<script src="../../../../resource/assets/js/jquery-1.11.1.min.js"></script>
-<script src="../../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../../../resource/assets/js/jquery.backstretch.min.js"></script>
-<script src="../../../../resource/assets/js/scripts.js"></script>
+    <!-- Javascript -->
+    <script src="../../../../resource/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="../../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../../resource/assets/js/jquery.backstretch.min.js"></script>
+    <script src="../../../../resource/assets/js/scripts.js"></script>
 
-<!--[if lt IE 10]>
+    <!--[if lt IE 10]>
 <script src="../../../../resource/assets/js/placeholder.js"></script>
 <![endif]-->
 
 </body>
 
+
 <script>
-    $('.alert').slideDown("slow").delay(5000).slideUp("slow");
+    $('.alert').slideDown("slow").delay(30000).slideUp("slow");
 </script>
 
 </html>
-

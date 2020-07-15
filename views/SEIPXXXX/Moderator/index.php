@@ -6,7 +6,7 @@ include_once('../../../vendor/autoload.php');
 
 use App\BABYTIKA\SEIPXXXX\User\User;
 use App\BABYTIKA\SEIPXXXX\User\Auth;
-use App\BABYTIKA\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Mother\Mother;
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 
@@ -22,7 +22,7 @@ if (!$status) {
     return;
 }
 
-$obj = new Admin();
+$obj = new Mother();
 
 $allData = $obj->index();
 
@@ -90,7 +90,7 @@ if (isset($_REQUEST['search'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>All Admin Data</title>
+    <title>All User Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
@@ -114,27 +114,26 @@ if (isset($_REQUEST['search'])) {
 
     <div class="container">
 
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
-                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
-                    <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
-                    <a href="create_user.php" class="w3-bar-item w3-button" style="text-decoration: none">Create User</a>
+                    <a href="create_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Mother Account</a>
+                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
                     <div class="w3-dropdown-hover">
                         <button class="w3-button w3-black" style="text-decoration: none">
                             All Data List <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none">All Admin Data</a>
-                            <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
-                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All User Data</a>
+                            <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none"> Mother</a>
+                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
                         </div>
                     </div>
-                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Registration Request</a>
                     <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
-                        <a href="../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
+                        <a href="../User/Authentication/moderator_logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
                     </span>
 
                 </div>
@@ -152,30 +151,31 @@ if (isset($_REQUEST['search'])) {
                            </div>";
                 ?>
             </div>
-           <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
         </div>
 
         <div class="row" style="margin-bottom: 30px;">
             <div class="col-sm-5">
                 <div class="w3-panel w3-blue w3-card-4 text-center">
-                    <h2>Admin Data List</h2>
+                    <h2>Mother Data List</h2>
                 </div>
             </div>
 
-            <div class="col-sm-1"></div>
+            <div class="col-sm-2"></div>
 
             <!-- required for search, block 4 of 5 start -->
             <br><br>
-            <div class="col-sm-5" style="display: none;">
+            <div class="col-sm-5">
                 <div class="w3-panel">
-                    <form id="searchForm" action="index.php" method="get">
-                        <input type="text" value="" id="searchID" name="search" placeholder="Search..">
-                        <input class="w3-check" type="checkbox" name="byTitle" checked="checked">
-                        <label> By Title</label>
-                        <input class="w3-check" type="checkbox" name="byAuthor" checked="checked">
-                        <label> By Author</label>
-                        <input hidden type="submit" class="btn-primary" value="search">
+                    <input id="myInput" type="text" placeholder="Search..">
 
+                    <form id="searchForm" action="index.php" method="get" style="display: none;">
+                        <input type="text" value="" id="searchID" name="search" placeholder="Search..">
+                        <input class="w3-check" type="checkbox" name="byID" checked="checked">
+                        <label> By ID</label>
+                        <input class="w3-check" type="checkbox" name="byCell" checked="checked">
+                        <label> By Cell</label>
+                        <input hidden type="submit" class="btn-primary" value="search">
                     </form>
                 </div>
             </div>
@@ -184,12 +184,11 @@ if (isset($_REQUEST['search'])) {
 
         </div>
 
-
         <form id="selectionForm" action="trash_multiple.php" method="post">
 
             <div class="row">
                 <div class="col-sm-12" style="text-align: right;">
-                    <a href="create.php" class="btn w3-indigo w3-hover-indigo" style="text-decoration: none">Create New Admin</a>
+                    <a href="create_mother.php" class="btn w3-indigo w3-hover-indigo" style="text-decoration: none">Create New Mother Account</a>
                 </div>
             </div>
 
@@ -225,29 +224,32 @@ if (isset($_REQUEST['search'])) {
                                 <th style="display: none;">All <input type="checkbox" name="select_all" id="select_all"></th>
                                 <th>Serial</th>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
+                                <th>Mother's Name</th>
+                                <th>Cell</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <?php
-                        foreach ($someData as $row) {
-                            echo "
+                        <tbody id="myTable">
+                            <?php
+                            foreach ($allData as $row) {
+                                echo "
                                                 <tr>
                                                     <td style='display: none;'>
                                                         <input type='checkbox' class='checkbox' name='selectedIDs[]' value='$row->id'>
                                                     </td>
                                                     <td>$serial</td>
-                                                    <td>$row->id</td>
-                                                    <td>$row->admin_name</td>
-                                                    <td>$row->admin_email</td>
                                                     <td>
-                                                        <a href='view.php?id=$row->id' type='button' class='btn btn-primary'>View</a>
-                                                        <a href='edit.php?id=$row->id' type='button' class='btn btn-success'>Edit</a>
+                                                        M0$row->id
+                                                    </td>
+                                                    <td>$row->M_Name</td>
+                                                    <td>$row->M_Cell</td>
+                                                    <td>
+                                                        <a href='#' type='button' class='btn btn-primary'>View</a>
+                                                        <a href='#' type='button' class='btn btn-success'>Edit</a>
                                                         <a href='trash.php?id=$row->id' title='Trash' style='display: none;'>
                                                             <button type='button' class='btn btn-warning'>Trash</button>
                                                         </a>
-                                                        <a href='delete.php?id=$row->id' type='button' onclick='return confirm_delete()' class='btn btn-danger'>Delete</a>
+                                                        <a href='#' type='button' class='btn btn-danger'>Delete</a>
                                                         <a href='email.php?id=$row->id' title='Email' style='display: none;'>
                                                             <button type='button' class='w3-btn w3-teal w3-hover-teal w3-text-white w3-hover-text-white'>
                                                                 <i class='material-icons'>mail</i>
@@ -256,9 +258,10 @@ if (isset($_REQUEST['search'])) {
                                                     </td>
                                                 </tr>
                                             ";
-                            $serial++;
-                        } //end of foreach loop
-                        ?>
+                                $serial++;
+                            } //end of foreach loop
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -267,7 +270,7 @@ if (isset($_REQUEST['search'])) {
 
         <!--  ######################## pagination code block#2 of 2 start ###################################### -->
 
-        <div class="row">
+        <div class="row" style="display: none;">
             <div class="col-sm-9"></div>
             <div class="col-lg-3">
                 <select class="form-control" name="ItemsPerPage" id="ItemsPerPage" onchange="javascript:location.href = this.value;">
@@ -295,7 +298,7 @@ if (isset($_REQUEST['search'])) {
 
         </div>
 
-        <div class="row" align="center">
+        <div class="row" align="center" style="display: none;">
 
             <div class="pagination">
                 <?php
@@ -398,6 +401,18 @@ if (isset($_REQUEST['search'])) {
         });
     </script>
 
+    <!--jQuery Search start-->
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <!--jQuery Search end-->
 
 
 

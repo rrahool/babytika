@@ -19,15 +19,15 @@ else{
     if($singleUser->email_verified=='Yes'){
     Message::message("
              <div class=\"alert alert-info\">
-             <strong>Don't worry! </strong>This email already verified. Please login!
+             <strong>Don't worry! </strong>Your email is verified. Please login!
               </div>");
-    Utility::redirect("signup.php");
+    Utility::redirect("signup_moderator.php");
    }
     else{
     Message::message("
              <div class=\"alert alert-info\">
              <strong>Sorry! </strong>This Token is Invalid. Please signup with a valid email!
               </div>");
-    Utility::redirect("signup.php");
+    Utility::redirect("signup_moderator.php");
    }
 }

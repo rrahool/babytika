@@ -46,7 +46,7 @@
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
                             <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">All Admin Data</a>
-                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
+                            <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
                             <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All User Data</a>
                         </div>
                     </div>
@@ -65,38 +65,50 @@
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
     <h2>Create New Moderator</h2>
-    <form class="form-horizontal" action="store.php" method="post">
+    <form class="form-horizontal" action="store_moderator.php" method="post">
     
         <div class="form-group">
-            <label class="control-label col-sm-3" for="moderatorName">Name:</label>
+            <label class="control-label col-sm-3" for="first_name">First Name:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="moderatorName" placeholder="Enter Moderator Name" name="moderatorName">
+                <input type="text" class="form-control" id="first_name" placeholder="Enter Moderator First Name" name="first_name">
             </div>
         </div>
+
         <div class="form-group">
-            <label class="control-label col-sm-3" for="moderatorEmail">Email:</label>
+            <label class="control-label col-sm-3" for="last_name">Last Name:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="moderatorEmail" placeholder="Email here" name="moderatorEmail">
+                <input type="text" class="form-control" id="last_name" placeholder="Enter Moderator Last Name" name="last_name">
             </div>
         </div>
+
         <div class="form-group">
-            <label class="control-label col-sm-3" for="moderatorMobile">Mobile:</label>
+            <label class="control-label col-sm-3" for="email">Email:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="moderatorMobile" placeholder="Mobile No." name="moderatorMobile">
+                <input type="text" class="form-control" id="email" placeholder="Moderator Email here" name="email">
             </div>
         </div>
+
         <div class="form-group">
-            <label class="control-label col-sm-3" for="moderatorUsername">Username:</label>
+            <label class="control-label col-sm-3" for="password">Password:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="moderatorUsername" placeholder="Moderator Username" name="moderatorUsername">
+                <input type="password" class="form-control" id="password" placeholder="Password here" name="password">
             </div>
         </div>
+
         <div class="form-group">
-            <label class="control-label col-sm-3" for="moderatorPassword">Password:</label>
+            <label class="control-label col-sm-3" for="phone">Phone:</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="moderatorPassword" placeholder="Password here" name="moderatorPassword">
+                <input type="text" class="form-control" id="phone" placeholder="Moderator Phone No." name="phone">
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="address">Address:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="address" placeholder="Moderator Address" name="address">
+            </div>
+        </div>
+        
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
                 <button type="submit" class="btn btn-default">Create Moderator</button>

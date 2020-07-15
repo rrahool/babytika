@@ -6,7 +6,7 @@ include_once('../../../vendor/autoload.php');
 
 use App\BABYTIKA\SEIPXXXX\User\User;
 use App\BABYTIKA\SEIPXXXX\User\Auth;
-use App\BABYTIKA\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Moderator\Moderator;
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 
@@ -22,19 +22,20 @@ if (!$status) {
     return;
 }
 
-$obj = new Admin();
+$obj = new Moderator();
 
 $allData = $obj->index();
 
+// Utility::dd($allData);
+
 $msg = Message::message();
 
-################## search  block 1 of 5 start ##################
 if (isset($_REQUEST['search'])) $someData =  $obj->search($_REQUEST);
+################## search  block 1 of 5 start ##################
 
 
 $availableKeywords = $obj->getAllKeywords();
 $comma_separated_keywords = '"' . implode('","', $availableKeywords) . '"';
-
 
 ################## search  block 1 of 5 end ##################
 
@@ -44,6 +45,7 @@ $comma_separated_keywords = '"' . implode('","', $availableKeywords) . '"';
 
 ######################## pagination code block#1 of 2 start ######################################
 $recordCount = count($allData);
+
 
 
 if (isset($_REQUEST['Page']))   $page = $_REQUEST['Page'];
@@ -90,7 +92,7 @@ if (isset($_REQUEST['search'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>All Admin Data</title>
+    <title>All Moderator Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
@@ -114,6 +116,7 @@ if (isset($_REQUEST['search'])) {
 
     <div class="container">
 
+
         <div class="row">
             <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
@@ -125,8 +128,8 @@ if (isset($_REQUEST['search'])) {
                             All Data List <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none">All Admin Data</a>
-                            <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
+                            <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">All Admin Data</a>
+                            <a href="#" class="w3-bar-item w3-button w3-green" style="text-decoration: none">All Moderator Data</a>
                             <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All User Data</a>
                         </div>
                     </div>
@@ -155,10 +158,11 @@ if (isset($_REQUEST['search'])) {
            <div class="col-md-2"></div>
         </div>
 
+
         <div class="row" style="margin-bottom: 30px;">
             <div class="col-sm-5">
-                <div class="w3-panel w3-blue w3-card-4 text-center">
-                    <h2>Admin Data List</h2>
+                <div class="w3-panel w3-brown w3-text-white w3-card-4 text-center">
+                    <h2>Moderator Data List</h2>
                 </div>
             </div>
 
@@ -189,7 +193,7 @@ if (isset($_REQUEST['search'])) {
 
             <div class="row">
                 <div class="col-sm-12" style="text-align: right;">
-                    <a href="create.php" class="btn w3-indigo w3-hover-indigo" style="text-decoration: none">Create New Admin</a>
+                    <a href="create_moderator.php" class="btn w3-indigo w3-hover-indigo" style="text-decoration: none">Create New Moderator</a>
                 </div>
             </div>
 
@@ -224,9 +228,11 @@ if (isset($_REQUEST['search'])) {
                             <tr class="text-center">
                                 <th style="display: none;">All <input type="checkbox" name="select_all" id="select_all"></th>
                                 <th>Serial</th>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
+                                <th width="7%">ID</th>
+                                <th>First Name</th>
+                                <th>Email </th>
+                                <th width="10%">Status</th>
+                                <th>Email Verified</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -239,15 +245,17 @@ if (isset($_REQUEST['search'])) {
                                                     </td>
                                                     <td>$serial</td>
                                                     <td>$row->id</td>
-                                                    <td>$row->admin_name</td>
-                                                    <td>$row->admin_email</td>
+                                                    <td>$row->first_name</td>
+                                                    <td>$row->email</td>                                                    
+                                                    <td>$row->status</td>   
+                                                    <td>$row->email_verified</td>   
                                                     <td>
-                                                        <a href='view.php?id=$row->id' type='button' class='btn btn-primary'>View</a>
-                                                        <a href='edit.php?id=$row->id' type='button' class='btn btn-success'>Edit</a>
+                                                        <a href='view_moderator.php?id=$row->id' type='button' class='btn btn-primary'>View</a>
+                                                        <a href='edit_moderator.php?id=$row->id' type='button' class='btn btn-success'>Edit</a>
                                                         <a href='trash.php?id=$row->id' title='Trash' style='display: none;'>
                                                             <button type='button' class='btn btn-warning'>Trash</button>
                                                         </a>
-                                                        <a href='delete.php?id=$row->id' type='button' onclick='return confirm_delete()' class='btn btn-danger'>Delete</a>
+                                                        <a href='delete_moderator.php?id=$row->id' type='button' onclick='return confirm_delete()' class='btn btn-danger'>Delete</a>
                                                         <a href='email.php?id=$row->id' title='Email' style='display: none;'>
                                                             <button type='button' class='w3-btn w3-teal w3-hover-teal w3-text-white w3-hover-text-white'>
                                                                 <i class='material-icons'>mail</i>
@@ -304,10 +312,10 @@ if (isset($_REQUEST['search'])) {
                 $pagePlusOne  = $page + 1;
 
                 if ($page > $pages)
-                    Utility::redirect("index.php?Page=$pages");
+                    Utility::redirect("index_moderator.php?Page=$pages");
 
                 if ($page > 1)
-                    echo "<a href='index.php?Page=$pageMinusOne' title='Previous'>" . "&laquo;" . "</a>";
+                    echo "<a href='index_moderator.php?Page=$pageMinusOne' title='Previous'>" . "&laquo;" . "</a>";
 
 
                 for ($i = 1; $i <= $pages; $i++) {
@@ -315,7 +323,7 @@ if (isset($_REQUEST['search'])) {
                     else  echo "<a href='?Page=$i'>" . $i . '</a>';
                 }
                 if ($page < $pages)
-                    echo "<a href='index.php?Page=$pagePlusOne' title='Next'>" . "&raquo;" . "</a>";
+                    echo "<a href='index_moderator.php?Page=$pagePlusOne' title='Next'>" . "&raquo;" . "</a>";
 
                 ?>
 

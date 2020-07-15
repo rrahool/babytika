@@ -2,8 +2,8 @@
 
 ######## PLEASE PROVIDE Your Gmail Info. -  (ALLOW LESS SECURE APP ON GMAIL SETTING ) ########
 
-$yourGmailAddress = 'motherandbabytika@gmail.com';
-$yourGmailPassword = '121212';
+$yourGmailAddress = 'teamerrorpoint@gmail.com';
+$yourGmailPassword = 'bitmPHPB57';
 
 ##############################################################################################
 
@@ -18,7 +18,7 @@ $bookTitle = new Admin();
 
 if(isset($_REQUEST['list'])) {
     $list = 1;
-    $recordSet = $bookTitle->index();
+    $recordSet = $bookTitle->trashList();
 
 }
 else {
@@ -93,7 +93,7 @@ else {
         <div class="col-md-1"></div>
     <div class="col-md-10">
         <h2>Email This To A Friend</h2>
-        <form  role="form" method="post" action="email.php<?php if(isset($_REQUEST['id'])) echo "?id=".$_REQUEST['id']; else echo "?list=1";?>">
+        <form  role="form" method="post" action="trashMail.php<?php if(isset($_REQUEST['id'])) echo "?id=".$_REQUEST['id']; else echo "?list=1";?>">
             <div class="form-group">
                 <label for="Name">Name:</label>
                 <input type="text"  name="name"  class="form-control" id="name" placeholder="Enter name of the recipient ">
@@ -110,6 +110,7 @@ if($list){
     $trs="";
     $sl=0;
 
+    printf("<h3>Trashed Items</h3>");
     printf("<table><tr> <td width='50'><strong>Serial</strong></td><td width='50'><strong>ID</strong></td><td width='250'><strong>Book Title</strong></td><td width='250'><strong>Author Name</strong></td></tr>");
 
     foreach($recordSet as $row) {
@@ -128,7 +129,7 @@ if($list){
 }
 else
 {
-    printf("I'm recommending You: [<strong>Book ID: </strong>%s, <strong>Book Name: </strong>%s, <strong>Author Name: </strong>%s]",$singleItem->id,$singleItem->book_title,$singleItem->author_name);
+    printf("Trashed Item: [<strong>Book ID: </strong>%s, <strong>Book Name: </strong>%s, <strong>Author Name: </strong>%s]",$singleItem->id,$singleItem->book_title,$singleItem->author_name);
 
 }
 ?>
@@ -181,9 +182,9 @@ else
             //Password to use for SMTP authentication
             $mail->Password = $yourGmailPassword;
             //Set who the message is to be sent from
-            $mail->setFrom($yourGmailAddress, 'Rahul Test');
+            $mail->setFrom($yourGmailAddress, 'BABYTIKA PHP');
             //Set an alternative reply-to address
-            $mail->addReplyTo($yourGmailAddress, 'Rahul Test');
+            $mail->addReplyTo($yourGmailAddress, 'BABYTIKA PHP');
             //Set who the message is to be sent to
 
             //echo $_REQUEST['email']; die();
@@ -207,7 +208,7 @@ else
 
                 ?>
                 <script type="text/javascript">
-                    window.location.href = 'index.php';
+                    window.location.href = 'trashed.php';
                 </script>
                 <?php
 

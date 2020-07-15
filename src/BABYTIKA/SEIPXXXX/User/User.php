@@ -10,7 +10,7 @@ use PDO;
 
 class User extends DB
 {
-    // public $table="users";
+    // public $table="moderator";
     public $firstName = "";
     public $lastName = "";
     public $email = "";
@@ -70,8 +70,8 @@ class User extends DB
         );
 
 
-        $query = "INSERT INTO `user-management`.`users` (`first_name`, `last_name`, `email`, `password`, `phone`, `address`,`email_verified`) 
-VALUES (:firstName, :lastName, :email, :password,:phone, :address, :email_token)";
+        $query = "INSERT INTO `db_atomic_project`.`moderator` (`first_name`, `last_name`, `email`, `password`, `phone`, `address`,`email_verified`) 
+VALUES (:firstName, :lastName, :email, :password, :phone, :address, :email_token)";
 
         $STH = $this->DBH->prepare($query);
 
@@ -80,7 +80,7 @@ VALUES (:firstName, :lastName, :email, :password,:phone, :address, :email_token)
         if ($result) {
             Message::message("
                 <div class=\"alert alert-success\">
-                            <strong>Success!</strong> Data has been stored successfully, Please check your email and active your account.
+                            <strong>Success!</strong> Your registration request has been sent successfully. Please check your email and active your account.
                 </div>");
             return Utility::redirect($_SERVER['HTTP_REFERER']);
         } else {
@@ -94,7 +94,7 @@ VALUES (:firstName, :lastName, :email, :password,:phone, :address, :email_token)
 
     public function change_password()
     {
-        $query = "UPDATE `user-management`.`users` SET `password`=:password  WHERE `users`.`email` =:email";
+        $query = "UPDATE `db_atomic_project`.`moderator` SET `password`=:password  WHERE `moderator`.`email` =:email";
         $result = $this->DBH->prepare($query);
         $result->execute(array(':password' => $this->password, ':email' => $this->email));
 
@@ -110,7 +110,7 @@ VALUES (:firstName, :lastName, :email, :password,:phone, :address, :email_token)
 
     public function view()
     {
-        $query = " SELECT * FROM users WHERE email = '$this->email' ";
+        $query = " SELECT * FROM moderator WHERE email = '$this->email' ";
         // Utility::dd($query);
         $STH = $this->DBH->query($query);
         $STH->setFetchMode(PDO::FETCH_OBJ);
@@ -120,25 +120,25 @@ VALUES (:firstName, :lastName, :email, :password,:phone, :address, :email_token)
 
     public function validTokenUpdate()
     {
-        $query = "UPDATE `user-management`.`users` SET  `email_verified`='" . 'Yes' . "' WHERE `users`.`email` ='$this->email'";
+        $query = "UPDATE `db_atomic_project`.`moderator` SET  `email_verified`='" . 'Yes' . "' WHERE `moderator`.`email` ='$this->email'";
         $result = $this->DBH->prepare($query);
         $result->execute();
 
         if ($result) {
             Message::message("
              <div class=\"alert alert-success\">
-             <strong>Success!</strong> Email verification has been successful. Please login now!
+             <strong>Congrats!</strong> Your Email has been verified. Please wait some time to access your account until an Admin approve your registration request.
               </div>");
         } else {
             echo "Error";
         }
-        return Utility::redirect('../../../../views/SEIPXXXX/User/Profile/signup.php');
+        return Utility::redirect('../../../../views/SEIPXXXX/User/Profile/signup_moderator.php');
     }
 
     public function update()
     {
 
-        $query = "UPDATE `user-management`.`users` SET `first_name`=:firstName, `last_name` =:lastName ,  `email` =:email, `phone` = :phone, `address` = :address  WHERE `users`.`email` = :email";
+        $query = "UPDATE `db_atomic_project`.`moderator` SET `first_name`=:firstName, `last_name` =:lastName ,  `email` =:email, `phone` = :phone, `address` = :address  WHERE `moderator`.`email` = :email";
 
         $result = $this->DBH->prepare($query);
 

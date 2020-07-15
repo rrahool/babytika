@@ -1,7 +1,8 @@
 <?php
 include_once('../../../../vendor/autoload.php');
 
-   if(!isset($_SESSION) )session_start();
+if (!isset($_SESSION)) session_start();
+
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 
 
@@ -39,36 +40,39 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
     <link rel="apple-touch-icon-precomposed" href="../../../../resource/assets/ico/apple-touch-icon-57-precomposed.png">
 
 </head>
+
 <body>
-<!-- Top content -->
-<div class="top-content">
-        <div class="container" >
-            <table>
-                <tr>
-                    <td width='230' >
+    <!-- Top content -->
+    <div class="top-content">
+        <div class="container">
 
-                    <td width='600' height="50" >
-
-
-                        <?php  if(isset($_SESSION['message']) )if($_SESSION['message']!=""){ ?>
-
-                            <div  id="message" class="form button"   style="font-size: smaller  " >
-                                      <center>
-                                    <?php if((array_key_exists('message',$_SESSION)&& (!empty($_SESSION['message'])))) {
-                                        echo "&nbsp;".Message::message();
-                                    }
-                                    Message::message(NULL);
-                                    ?></center>
-                            </div>
-                        <?php } ?>
-                    </td>
-                </tr>
-            </table>
-
-            <div class="row" >
+            <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" style="margin: 0px auto;">
-                    <div class="form-box" >
+                    <div>
+                        <table>
+                            <tr>
+                                <td width='600' height="50">
+
+                                    <?php if (isset($_SESSION['message'])) if ($_SESSION['message'] != "") { ?>
+
+                                        <div id="message" class="form button" style="font-size: smaller  ">
+                                            <center>
+                                                <?php if ((array_key_exists('message', $_SESSION) && (!empty($_SESSION['message'])))) {
+                                                    echo "&nbsp;" . Message::message();
+                                                }
+                                                Message::message(NULL);
+                                                ?></center>
+                                        </div>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <a href="../../../../index.php">Choose Panel to Login</a>
+                    </div>
+                    <div class="form-box">
                         <div class="form-top">
                             <div class="form-top-left">
                                 <h3>Admin Login</h3>
@@ -100,21 +104,37 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
     </div>
 
 
-<!-- Javascript -->
-<script src="../../../../resource/assets/js/jquery-1.11.1.min.js"></script>
-<script src="../../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../../../resource/assets/js/jquery.backstretch.min.js"></script>
-<script src="../../../../resource/assets/js/scripts.js"></script>
+    <!-- Javascript -->
+    <script src="../../../../resource/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="../../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../../resource/assets/js/jquery.backstretch.min.js"></script>
+    <script src="../../../../resource/assets/js/scripts.js"></script>
 
-<!--[if lt IE 10]>
+
+    <!--[if lt IE 10]>
 <script src="../../../../resource/assets/js/placeholder.js"></script>
 <![endif]-->
 
 </body>
+
+
+<script>
+    jQuery(
+
+        function($) {
+            $('#message').fadeOut(550);
+            $('#message').fadeIn(550);
+            $('#message').fadeOut(550);
+            $('#message').fadeIn(550);
+            $('#message').fadeOut(550);
+            $('#message').fadeIn(550);
+            $('#message').fadeOut(550);
+        }
+    )
+</script>
 
 <script>
     $('.alert').slideDown("slow").delay(5000).slideUp("slow");
 </script>
 
 </html>
-
