@@ -244,17 +244,9 @@ if (isset($_REQUEST['search'])) {
                                                     <td>$row->M_Name</td>
                                                     <td>$row->M_Cell</td>
                                                     <td>
-                                                        <a href='#' type='button' class='btn btn-primary'>View</a>
-                                                        <a href='#' type='button' class='btn btn-success'>Edit</a>
-                                                        <a href='trash.php?id=$row->id' title='Trash' style='display: none;'>
-                                                            <button type='button' class='btn btn-warning'>Trash</button>
-                                                        </a>
-                                                        <a href='#' type='button' class='btn btn-danger'>Delete</a>
-                                                        <a href='email.php?id=$row->id' title='Email' style='display: none;'>
-                                                            <button type='button' class='w3-btn w3-teal w3-hover-teal w3-text-white w3-hover-text-white'>
-                                                                <i class='material-icons'>mail</i>
-                                                            </button>
-                                                        </a>
+                                                        <a href='taken_vaccine.php?id=$row->M_Cell' type='button' class='btn btn-primary'>Taken</a>
+                                                        <a href='#' type='button' class='btn btn-success'>Previous</a>
+                                                        <a href='#' type='button' class='btn btn-danger'>V Schedule</a>
                                                     </td>
                                                 </tr>
                                             ";
@@ -267,6 +259,17 @@ if (isset($_REQUEST['search'])) {
             </div>
         </form>
 
+        <!-- <a href='#' type='button' class='btn btn-primary'>View</a>
+        <a href='#' type='button' class='btn btn-success'>Edit</a>
+        <a href='trash.php?id=$row->id' title='Trash' style='display: none;'>
+            <button type='button' class='btn btn-warning'>Trash</button>
+        </a>
+        <a href='#' type='button' class='btn btn-danger'>Delete</a>
+        <a href='email.php?id=$row->id' title='Email' style='display: none;'>
+            <button type='button' class='w3-btn w3-teal w3-hover-teal w3-text-white w3-hover-text-white'>
+                <i class='material-icons'>mail</i>
+            </button>
+        </a> -->
 
         <!--  ######################## pagination code block#2 of 2 start ###################################### -->
 

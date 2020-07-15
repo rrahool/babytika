@@ -187,6 +187,20 @@ class Mother extends Database
     } // end of delete()
 
 
+    public function taken_vaccine(){
+
+        $query = "SELECT * FROM `vaccine` INNER JOIN `mother` ON vaccine.cell = mother.M_Cell WHERE vaccine.numbers <> 1 ORDER BY `number` ASC";
+        
+
+        $STH = $this->DBH->query($query);
+
+        $STH->setFetchMode(PDO::FETCH_OBJ);
+        $singleData = $STH->fetchAll();
+        return $singleData;
+
+    } // end of view()
+
+
     public function search($requestArray){
         $sql = "";
 
