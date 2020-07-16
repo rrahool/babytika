@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 05:01 PM
+-- Generation Time: Jul 16, 2020 at 10:21 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -89,7 +89,8 @@ INSERT INTO `mother` (`id`, `M_Name`, `M_Email`, `M_Cell`, `M_User`, `M_Blood`, 
 (4, 'Ann Marie', 'ann@marie.am', '4213567774', '1456223123', 'B+', 4, '112233'),
 (5, 'Dua Lipa', 'dua.lipa@dl.co', '6321456319', '5462315523', 'AB-', 5, '112233'),
 (6, 'Salena Gomez', 'salena@gom.sg', '996452123', '885641234', 'A+', 4, '112233'),
-(7, 'tanjil', 'tanjil.ctg01@gmail.com', '01836245719', '01616557756', 'B+', 2, '11223344');
+(7, 'tanjil', 'tanjil.ctg01@gmail.com', '01836245719', '01616557756', 'B+', 2, '11223344'),
+(8, 'rahul', 'rbis1122@gmail.com', '01812743059', '12121211', 'O+', 3, '112233');
 
 -- --------------------------------------------------------
 
@@ -359,18 +360,22 @@ CREATE TABLE `vaccine` (
   `pdate` date NOT NULL,
   `ndate` date NOT NULL,
   `number` int(11) NOT NULL,
-  `numbers` int(11) NOT NULL
+  `numbers` int(11) NOT NULL,
+  `status` int(11) DEFAULT 0,
+  `status_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `vaccine`
 --
 
-INSERT INTO `vaccine` (`id`, `cell`, `pdate`, `ndate`, `number`, `numbers`) VALUES
-(1, '01836245719', '2020-07-14', '2020-07-14', 3, 1),
-(2, '01836245719', '2020-03-01', '2020-03-01', 1, 3),
-(3, '01836245719', '2020-05-12', '2020-05-12', 2, 3),
-(4, '01836245719', '2020-07-14', '2021-07-13', 4, 2);
+INSERT INTO `vaccine` (`id`, `cell`, `pdate`, `ndate`, `number`, `numbers`, `status`, `status_date`) VALUES
+(1, '01836245719', '2020-07-14', '2020-07-14', 3, 1, 0, ''),
+(2, '01836245719', '2020-03-01', '2020-03-01', 1, 3, 0, ''),
+(3, '01836245719', '2020-05-12', '2020-05-12', 2, 3, 0, ''),
+(4, '01836245719', '2020-07-14', '2021-07-13', 4, 2, 0, ''),
+(5, '01812743059', '2020-07-14', '2020-07-15', 2, 3, 0, ''),
+(6, '01836245719', '2021-07-13', '2022-07-12', 5, 2, 1, '2020-07-17');
 
 --
 -- Indexes for dumped tables
@@ -456,7 +461,7 @@ ALTER TABLE `moderator`
 -- AUTO_INCREMENT for table `mother`
 --
 ALTER TABLE `mother`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_birthday`
@@ -510,7 +515,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vaccine`
 --
 ALTER TABLE `vaccine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

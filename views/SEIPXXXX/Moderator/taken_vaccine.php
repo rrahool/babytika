@@ -69,7 +69,7 @@ $singleData = $obj->taken_vaccine();
             <div style="min-height: 100px;"></div>
             <div class="w3-container w3-quarter"></div>
 
-            <div class="w3-card-4 w3-half">
+            <div class="w3-card-4 w3-half" style='margin-bottom: 200px;'>
 
                 <header class="w3-container w3-blue">
                     <h2>Mother Taken Vaccine Info</h2>
@@ -87,10 +87,13 @@ $singleData = $obj->taken_vaccine();
                                     <span class='w3-label-lg w3-red' style='padding: 5px'>ID - $vaccine->id</span><br>";
                         if ($vaccine->numbers == '2') {
 
-
                             $values = $vaccine->number;
+                            $status = $vaccine->status;
+
                             $final_value = $values;
+                            $final_status = $status;
                             $final_date = $vaccine->ndate;
+                            
                             $v = intval($values);
                             $values = intval($v);
                             // echo $values;
@@ -106,41 +109,52 @@ $singleData = $obj->taken_vaccine();
                                 </li>
                             </ul>
                         ";
-                        
                     }
                 }
 
                 if ($usercell == $vaccine->cell) {
-                    if($final_value != '6'){
-                        echo "
-                            <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
-                                    <a href='edit.php?id=$vaccine->id' type='button' class='btn btn-primary'>Edit Info</a>
-                            </div>
-                            <ul class='w3-ul w3-card-4'>
-                                <li class='w3-padding-64'>
-                                    <span class='w3-label-lg w3-red' style='padding: 5px'>ID - $vaccine->id</span><br>
-                                    <span class='w3-xxlarge'>Vaccine: TT-$final_value</span><br>
-                                    <span class='w3-large'>Taken Date: $final_date</span><br><br>
-                                    <span class='w3-large'>
-                                        <form class='form-horizontal' action='store.php' method='post'>
-                                            <div class='form-group'>
-                                                <label class='col-sm-2 w3-text-green' for='gender'>Taken: </label>
-                                                <div class='col-sm-10'>
-                                                    <span style='margin-right: 2rem;'>
-                                                        <input type='radio' name='gender' value='Yes'> Yes
-                                                        <input type='radio' name='gender' value='No'> No 
-                                                    </span>
-                                                    <button type='submit' class='btn btn-default'>Submit</button>
-                                                </div>
-                                            </div>                                        
-                                        </form>
-                                    </span>
-                                    
-                                </li>
-                            </ul>
-                        ";
+                    if($final_status == '0') {
+                        if ($final_value != '6') {
+                            echo "
+                                <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
+                                        <a href='edit.php?id=$vaccine->id' type='button' class='btn btn-primary'>Edit Info</a>
+                                </div>
+                                <ul class='w3-ul w3-card-4'>
+                                    <li class='w3-padding-64'>
+                                        <span class='w3-label-lg w3-red' style='padding: 5px'>ID - $vaccine->id</span><br>
+                                        <span class='w3-xxlarge'>Vaccine: TT-$final_value</span><br>
+                                        <div class='col-md-5'>
+                                            <span class='w3-large'>Taken Date: $final_date</span><br><br>
+                                        </div>
+                                        <div class='col-md-7'>
+                                            <span class='w3-large'>
+                                                    <form class='form-horizontal' action='store_mother_taken_vaccine.php' method='post'>
+    
+                                                        <input type='hidden' class='form-control' id='number' name='number' value='$final_value'>
+                                                        <input type='hidden' class='form-control' id='cell' name='cell' value='$vaccine->cell'>
+    
+                                                        <div class='form-group'>
+                                                            <label class='col-sm-3 w3-text-green' for='gender'>Taken: </label>
+                                                            <div class='col-sm-9'>
+                                                                <span>
+                                                                    <input type='radio' name='taken' value='1' required> Yes
+                                                                    <input type='radio' name='taken' value='0' required> No 
+                                                                </span>
+                                                                <button type='submit' name='submit' class='btn btn-default' onclick='return confirm_mobile()'>Done</button>
+                                                            </div>
+                                                        </div>  
+    
+                                                    </form>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            ";
+                        } else {
+                            echo "<h2>All vaccines have been taken </h2>";
+                        }
                     } else {
-                        echo "<h2>All vaccine have been taken </h2>";
+
                     }
                 }
                 ?>
@@ -148,42 +162,52 @@ $singleData = $obj->taken_vaccine();
             <div class="w3-container w3-quarter"></div>
         </div>
     </div>
-    <!--<div class="w3-container">
-        <div class="w3-row">
-            <div class="col-sm-6">
-                <div class="w3-panel w3-blue w3-card-4">
-                    <h2> Single Book Information - Book Title </h2>
-                </div>
-            </div>
-        </div>
+    <!-- <div class="w3-container">  
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <table class="w3-table-all w3-hoverable">
                     <?php
-                    //                        echo "
-                    //                                <tr>
-                    //                                    <td>ID: </td>
-                    //                                    <td>$singleData->id</td>
-                    //                                </tr>
-                    //                                <tr>
-                    //                                    <td>Book Title: </td>
-                    //                                    <td>$singleData->admin_name</td>
-                    //                                </tr>
-                    //                                <tr>
-                    //                                    <td>Author: </td>
-                    //                                    <td>$singleData->admin_email</td>
-                    //                                </tr>
-                    //";
+                    echo "
+                                                   <tr>
+                                                       <td>ID: </td>
+                                                       <td>ABCD</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>Book Title: </td>
+                                                       <td>ABCD</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td>Author: </td>
+                                                       <td>ABCD</td>
+                                                   </tr>
+                    ";
                     ?>
                 </table>
             </div>
             <div class="col-md-2"></div>
         </div>
 
-    </div>-->
+    </div> -->
+
+    <!-- <script>
+        $('form').submit(function() {
+            $(this).find('button[type=submit]').prop('disabled', true);
+            return false;
+        });
+    </script> -->
+
+    <script type="text/javascript">
+        function confirm_mobile() {
+            return confirm('User need to confirm from Mobile Apps...');
+        }
+    </script>
 
 
 </body>
+
+
+
+
 
 </html>
