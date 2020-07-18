@@ -127,7 +127,7 @@ if (isset($_REQUEST['search'])) {
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
                             <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none">All Admin Data</a>
                             <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
-                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All User Data</a>
+                            
                         </div>
                     </div>
                     
