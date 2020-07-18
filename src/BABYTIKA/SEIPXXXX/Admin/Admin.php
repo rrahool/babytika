@@ -37,7 +37,7 @@ class Admin extends Database
         }
 
         if(array_key_exists("adminPassword",$postArray)){
-            $this->adminPassword = $postArray['adminPassword'];
+            $this->adminPassword = md5($postArray['adminPassword']);
         }
     } // end of setData()
 

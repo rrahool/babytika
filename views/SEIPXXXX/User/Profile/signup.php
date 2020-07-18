@@ -70,7 +70,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
                         </table>
                     </div>
                     <div>
-                        <a href="../../../../index.php">Choose Panel to Login</a>
+                        <a href="../../../../index.php" class="btn btn-default">Choose Login Panel</a>
                     </div>
                     <div class="form-box">
                         <div class="form-top">
@@ -85,12 +85,12 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
                         <div class="form-bottom">
                             <form role="form" action="../Authentication/login.php" method="post" class="login-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="email">Email</label>
-                                    <input type="text" name="email" placeholder="Email..." class="form-email form-control" id="form-email">
+                                    <label class="sr-only" for="admin_email">Email</label>
+                                    <input type="text" name="admin_email" placeholder="Email..." class="form-email form-control" id="admin_email">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-password">Password</label>
-                                    <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
+                                    <label class="sr-only" for="admin_password">Password</label>
+                                    <input type="password" name="admin_password" placeholder="Password..." class="form-password form-control" id="admin_password">
                                 </div>
                                 <button type="submit" class="btn">Sign in!</button>
                             </form>

@@ -15,4 +15,4 @@ $obj->setData($_GET);
 
 $obj->delete();
 
-Utility::redirect($path);
+Utility::redirect("index.php?Page=1");

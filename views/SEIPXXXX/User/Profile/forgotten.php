@@ -23,12 +23,12 @@ if(isset($_POST['email'])) {
     $mail->Port       = 465;
     $mail->AddAddress($_POST['email']);
     $mail->Username="motherandbabytika@gmail.com";
-    $mail->Password="121212";
-    $mail->SetFrom('motherandbabytika@gmail.com','User Management');
-    $mail->AddReplyTo("motherandbabytika@gmail.com","User Management");
+    $mail->Password="babyTika00@Tanjil";
+    $mail->SetFrom('motherandbabytika@gmail.com','Mother & Baby Tika');
+    $mail->AddReplyTo("motherandbabytika@gmail.com","Mother & Baby Tika");
     $mail->Subject    = "Your Password Reset Link";
     $message =  "Please click this link to reset your password: 
-       http://localhost/UserManagement/views/SEIPXXXX/User/Profile/resetpassword.php?email=".$_POST['email']."&code=".$singleUser->password;
+       http://motherandbabytika.xyz/babytika/views/SEIPXXXX/User/Profile/resetpassword.php?email=".$_POST['email']."&code=".$singleUser->password;
     $mail->MsgHTML($message);
     if($mail->Send()){
 

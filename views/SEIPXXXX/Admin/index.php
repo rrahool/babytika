@@ -161,6 +161,11 @@ if (isset($_REQUEST['search'])) {
                     <h2>Admin Data List</h2>
                 </div>
             </div>
+            <div class="col-sm-7">
+                <div class="w3-panel w3-card-8 text-right">
+                    <h3>Hello Admin</h3>
+                </div>
+            </div>
 
             <div class="col-sm-1"></div>
 

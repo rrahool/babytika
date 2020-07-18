@@ -122,7 +122,7 @@ $singleData = $obj->mother_taken_vaccine();
                                         <span class='w3-label-lg w3-red' style='padding: 5px'>ID - $vaccine->id</span><br>
                                         <span class='w3-xxlarge'>Vaccine: TT-$final_value</span><br>
                                         <div class='col-md-5'>
-                                            <span class='w3-large'>Taken Date: $final_date</span><br><br>
+                                            <span class='w3-large'>Schedule Date: $final_date</span><br><br>
                                         </div>
                                         <div class='col-md-7'>
                                             <span class='w3-large'>

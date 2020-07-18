@@ -10,13 +10,13 @@ $auth= new Auth();
 $status= $auth->setData($_POST)->is_registered();
 
 if($status){
-    $_SESSION['email']=$_POST['email'];
+    $_SESSION['admin_email']=$_POST['admin_email'];
     Message::message("
                 <div class=\"alert alert-success\">
                             <strong>Welcome!</strong> You have successfully logged in.
                 </div>");
     
-     Utility::redirect('../../Admin/index.php');
+     Utility::redirect('../../Admin/index.php?id=');
 
 }else{
     Message::message("

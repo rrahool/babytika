@@ -68,7 +68,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
             </table>
 
             <div class="row">
-                <a href="../../../../index.php">Choose Panel to Login</a>
+                <a href="../../../../index.php" class="btn btn-default">Choose Login Panel</a>
             </div>
 
             <div class="row">

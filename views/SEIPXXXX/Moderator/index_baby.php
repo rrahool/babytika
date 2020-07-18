@@ -5,7 +5,7 @@ if (!isset($_SESSION)) session_start();
 include_once('../../../vendor/autoload.php');
 
 use App\BABYTIKA\SEIPXXXX\User\User;
-use App\BABYTIKA\SEIPXXXX\User\Auth;
+use App\BABYTIKA\SEIPXXXX\User\ModeratorAuth;
 use App\BABYTIKA\SEIPXXXX\Baby\Baby;
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 use App\BABYTIKA\SEIPXXXX\Utility\Utility;
@@ -14,7 +14,7 @@ $obj = new User();
 $obj->setData($_SESSION);
 $singleUser = $obj->view();
 
-$auth = new Auth();
+$auth = new ModeratorAuth();
 $status = $auth->setData($_SESSION)->logged_in();
 
 if (!$status) {
@@ -158,6 +158,11 @@ if (isset($_REQUEST['search'])) {
             <div class="col-sm-5">
                 <div class="w3-panel w3-indigo w3-card-4 text-center">
                     <h2>Baby Data List</h2>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="w3-panel w3-card-8 text-right">
+                    <h3>Hello Moderator</h3>
                 </div>
             </div>
 
