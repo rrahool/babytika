@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2020 at 10:21 PM
+-- Generation Time: Jul 18, 2020 at 05:24 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -21,6 +21,64 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_atomic_project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_info`
+--
+
+CREATE TABLE `admin_info` (
+  `id` int(11) NOT NULL,
+  `admin_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `admin_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `admin_password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `is_trashed` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `admin_info`
+--
+
+INSERT INTO `admin_info` (`id`, `admin_name`, `admin_email`, `admin_password`, `is_trashed`) VALUES
+(35, 'Tanjil', 'tanjil@gmail.com', '112233', 'No'),
+(36, 'John Doe', 'john@doe.com', '123456', 'No'),
+(37, 'Mary Jane', 'mary.jane@yahoo.com', '112233', 'No'),
+(38, 'Thomas Shelby', 'thomas@outlook.com', '112233', 'No'),
+(39, 'aaaaa', 'aa@gg.co', '112233', 'No'),
+(41, 'zzzz', 'zz@yy.co', '112233', 'No');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `baby`
+--
+
+CREATE TABLE `baby` (
+  `id` int(11) NOT NULL,
+  `B_Name` varchar(255) NOT NULL,
+  `BM_Email` varchar(255) NOT NULL,
+  `B_User` varchar(255) NOT NULL,
+  `BF_Cell` varchar(255) NOT NULL,
+  `B_Pass` varchar(255) NOT NULL,
+  `B_Day` date NOT NULL,
+  `B_Gender` varchar(255) NOT NULL,
+  `otp` int(11) DEFAULT NULL,
+  `status` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `baby`
+--
+
+INSERT INTO `baby` (`id`, `B_Name`, `BM_Email`, `B_User`, `BF_Cell`, `B_Pass`, `B_Day`, `B_Gender`, `otp`, `status`) VALUES
+(1, 'Karim', 'shafkatislam1@gmail.com', '01828726867', '01812345678', '1234', '2020-07-08', 'Male', 574938, 'Yes'),
+(2, 'abc', 's.tanjilislam@gmail.com', '01616557756', '01836245719', '11223344', '2020-07-15', 'Male', 450833, 'No'),
+(3, 'tanjil masud', 'tanjiltajil@gmail.com', '01616557759', '01536206749', '11223344', '2020-07-16', 'Male', 886365, 'Yes'),
+(4, 'tanjil masud', 'tanjiltajil@gmail.com', '01616557781', '01616557784', '11223344', '2020-07-15', 'Male', 200240, 'Yes'),
+(5, 'masud', 's.tanjilislam@gmail.com', '01616557767', '01616557759', '11223344', '2020-07-09', 'Male', 25825, 'No'),
+(6, 'Jarrie', 'mary@gmail.com', '123456789', '987456123', '112233', '2020-07-15', 'Male', NULL, ''),
+(7, 'BBB', 'bb@gg.vp', '6565665', '11131', '112233', '2020-07-18', 'Female', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -119,40 +177,6 @@ INSERT INTO `tbl_birthday` (`id`, `name`, `dob`, `is_trashed`) VALUES
 (14, 'dffs', '2017-06-14', '2017-06-15 13:36:23'),
 (15, 'sdfgf', '2017-06-14', '2017-06-15 13:36:23'),
 (16, 'sdfzsdrf', '2017-06-12', 'No');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_book_title`
---
-
-CREATE TABLE `tbl_book_title` (
-  `id` int(11) NOT NULL,
-  `admin_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `admin_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `admin_password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `book_image` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `is_trashed` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tbl_book_title`
---
-
-INSERT INTO `tbl_book_title` (`id`, `admin_name`, `admin_email`, `admin_password`, `book_image`, `is_trashed`) VALUES
-(20, 'yjdydghx', 'srtsrfr4', '', '', '2020-07-05 00:45:16'),
-(21, 'dxzgfg', 'rsgtsrzgtr', '', '', '2017-06-14 12:40:05'),
-(22, 'wstrrws', 'rtewsrtf', '', '', '2017-06-14 12:40:05'),
-(26, 'ewrewr', 'hgffh', '', '', '2017-06-14 12:40:38'),
-(28, 'trutry', 'rte4ert', '', '', '2017-06-14 12:40:56'),
-(29, 'et5ert', 'eryt5ert', '', '', '2020-07-05 00:45:16'),
-(30, 'erytert', 'yruhryth', '', '', '2017-06-14 23:21:08'),
-(31, 'rter', 'gfrrt', '', '', '2020-07-05 00:45:16'),
-(32, 'rtgr', 'rstgr', '', '', '2017-06-14 23:21:16'),
-(35, 'Tanjil', 'tanjil@gmail.com', '112233', '', 'No'),
-(36, 'John Doe', 'john@doe.com', '123456', '', 'No'),
-(37, 'Mary Jane', 'mary.jane@yahoo.com', '112233', '', 'No'),
-(38, 'Thomas Shelby', 'thomas@outlook.com', '112233', '', 'No');
 
 -- --------------------------------------------------------
 
@@ -375,11 +399,49 @@ INSERT INTO `vaccine` (`id`, `cell`, `pdate`, `ndate`, `number`, `numbers`, `sta
 (3, '01836245719', '2020-05-12', '2020-05-12', 2, 3, 0, ''),
 (4, '01836245719', '2020-07-14', '2021-07-13', 4, 2, 0, ''),
 (5, '01812743059', '2020-07-14', '2020-07-15', 2, 3, 0, ''),
-(6, '01836245719', '2021-07-13', '2022-07-12', 5, 2, 1, '2020-07-17');
+(6, '01836245719', '2021-07-13', '2022-07-12', 5, 2, 0, '2020-07-17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vaccine_baby`
+--
+
+CREATE TABLE `vaccine_baby` (
+  `id` int(11) NOT NULL,
+  `cell` varchar(255) NOT NULL,
+  `pdate` date NOT NULL,
+  `ndate` date NOT NULL,
+  `number` int(11) NOT NULL,
+  `numbers` int(11) NOT NULL,
+  `vaccine` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `status_date` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vaccine_baby`
+--
+
+INSERT INTO `vaccine_baby` (`id`, `cell`, `pdate`, `ndate`, `number`, `numbers`, `vaccine`, `status`, `status_date`) VALUES
+(1, '01616557784', '2020-07-19', '2020-07-19', 3, 1, ' OPV-1, Hepatitis B-1, DPT-1', 0, ''),
+(2, '01616557784', '2020-07-19', '2020-08-17', 4, 2, ' OPV-2, Hepatitis B-2, DPT-2', 0, '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_info`
+--
+ALTER TABLE `admin_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `baby`
+--
+ALTER TABLE `baby`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `moderator`
@@ -397,12 +459,6 @@ ALTER TABLE `mother`
 -- Indexes for table `tbl_birthday`
 --
 ALTER TABLE `tbl_birthday`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_book_title`
---
-ALTER TABLE `tbl_book_title`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -448,8 +504,26 @@ ALTER TABLE `vaccine`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `vaccine_baby`
+--
+ALTER TABLE `vaccine_baby`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin_info`
+--
+ALTER TABLE `admin_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `baby`
+--
+ALTER TABLE `baby`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `moderator`
@@ -461,19 +535,13 @@ ALTER TABLE `moderator`
 -- AUTO_INCREMENT for table `mother`
 --
 ALTER TABLE `mother`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_birthday`
 --
 ALTER TABLE `tbl_birthday`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `tbl_book_title`
---
-ALTER TABLE `tbl_book_title`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tbl_cities`
@@ -516,6 +584,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vaccine`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `vaccine_baby`
+--
+ALTER TABLE `vaccine_baby`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -7,26 +7,26 @@
  * Time: 1:38 PM
  */
 
-namespace App\BABYTIKA\SEIPXXXX\Mother;
+namespace App\BABYTIKA\SEIPXXXX\Baby;
 
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 use App\BABYTIKA\SEIPXXXX\Model\Database;
 use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 use PDO;
 
-class Mother extends Database
+class Baby extends Database
 {
 
     public $id;
-    public $M_Name;
-    public $M_Email;
-    public $M_Cell;
-    public $M_User;
-    public $M_Blood;
-    public $M_Week;
-    public $M_Pass;
+    public $B_Name;
+    public $BM_Email;
+    public $B_User;
+    public $BF_Cell;
+    public $B_Day;
+    public $B_Gender;
+    public $B_Pass;
 
-    // for vaccine update
+    // for baby_vaccine update
     public $taken;
     public $cell;
     public $number;
@@ -39,32 +39,32 @@ class Mother extends Database
             $this->id = $postArray['id'];
         }
 
-        if (array_key_exists("M_Name", $postArray)) {
-            $this->M_Name = $postArray['M_Name'];
+        if (array_key_exists("B_Name", $postArray)) {
+            $this->B_Name = $postArray['B_Name'];
         }
 
-        if (array_key_exists("M_Email", $postArray)) {
-            $this->M_Email = $postArray['M_Email'];
+        if (array_key_exists("BM_Email", $postArray)) {
+            $this->BM_Email = $postArray['BM_Email'];
         }
 
-        if (array_key_exists("M_Cell", $postArray)) {
-            $this->M_Cell = $postArray['M_Cell'];
+        if (array_key_exists("B_User", $postArray)) {
+            $this->B_User = $postArray['B_User'];
         }
 
-        if (array_key_exists("M_User", $postArray)) {
-            $this->M_User = $postArray['M_User'];
+        if (array_key_exists("BF_Cell", $postArray)) {
+            $this->BF_Cell = $postArray['BF_Cell'];
         }
 
-        if (array_key_exists("M_Blood", $postArray)) {
-            $this->M_Blood = $postArray['M_Blood'];
+        if (array_key_exists("B_Day", $postArray)) {
+            $this->B_Day = $postArray['B_Day'];
         }
 
-        if (array_key_exists("M_Week", $postArray)) {
-            $this->M_Week = $postArray['M_Week'];
+        if (array_key_exists("B_Gender", $postArray)) {
+            $this->B_Gender = $postArray['B_Gender'];
         }
 
-        if (array_key_exists("M_Pass", $postArray)) {
-            $this->M_Pass = $postArray['M_Pass'];
+        if (array_key_exists("B_Pass", $postArray)) {
+            $this->B_Pass = $postArray['B_Pass'];
         }
 
         if (array_key_exists("taken", $postArray)) {
@@ -83,15 +83,15 @@ class Mother extends Database
     public function store()
     {
 
-        $query = "INSERT INTO `mother` (`M_Name`, `M_Email`, `M_Cell`, `M_User`, `M_Blood`, `M_Week`, `M_Pass`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO `baby` (`B_Name`, `BM_Email`, `B_User`, `BF_Cell`, `B_Day`, `B_Gender`, `B_Pass`) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
-        $dataArray = array($this->M_Name, $this->M_Email, $this->M_Cell, $this->M_User, $this->M_Blood, $this->M_Week, $this->M_Pass);
+        $dataArray = array($this->B_Name, $this->BM_Email, $this->B_User, $this->BF_Cell, $this->B_Day, $this->B_Gender, $this->B_Pass);
 
         $STH = $this->DBH->prepare($query);
         $result = $STH->execute($dataArray);
 
         if ($result) {
-            Message::message("Success :) Mother's Account has been Created Successfully.");
+            Message::message("Success :) Baby's Account has been Created Successfully.");
         } else {
             Message::message("Failure :( Data Not Inserted!");
         }
@@ -100,7 +100,7 @@ class Mother extends Database
     public function index()
     {
 
-        $query = "SELECT * FROM `mother`";
+        $query = "SELECT * FROM `baby`";
 
         $STH = $this->DBH->query($query);
         $STH->setFetchMode(PDO::FETCH_OBJ);
@@ -112,7 +112,7 @@ class Mother extends Database
     public function view()
     {
 
-        $query = "SELECT * FROM `mother` WHERE `id`=" . $this->id;
+        $query = "SELECT * FROM `baby` WHERE `id`=" . $this->id;
 
         $STH = $this->DBH->query($query);
 
@@ -124,7 +124,7 @@ class Mother extends Database
     public function update()
     {
 
-        $query = "UPDATE `mother` SET `first_name` = ?, `email` = ?, `status` = ? WHERE `id` = $this->id;";
+        $query = "UPDATE `baby` SET `first_name` = ?, `email` = ?, `status` = ? WHERE `id` = $this->id;";
 
         //    Utility::dd($query);
 
@@ -199,9 +199,9 @@ class Mother extends Database
         }
     } // end of delete()
 
-    public function store_mother_taken_vaccine()
+    public function store_baby_taken_vaccine()
     {
-        $query = "UPDATE `vaccine` SET `status` = $this->taken, `status_date` = CURDATE() WHERE `cell` = $this->cell AND `number` = $this->number";
+        $query = "UPDATE `vaccine_baby` SET `status` = $this->taken, `status_date` = CURDATE() WHERE `cell` = $this->cell AND `number` = $this->number";
 
         $result = $this->DBH->exec($query);
 
@@ -211,13 +211,13 @@ class Mother extends Database
             Message::message("Failure :( Vaccine Info Not Updated!");
         }
 
-    } // end of store_mother_taken_vaccine()
+    } // end of store_baby_taken_vaccine()
 
 
-    public function mother_taken_vaccine()
+    public function baby_taken_vaccine()
     {
 
-        $query = "SELECT * FROM `vaccine` INNER JOIN `mother` ON vaccine.cell = mother.M_Cell WHERE vaccine.numbers <> 1 ORDER BY `number` ASC";
+        $query = "SELECT * FROM `vaccine_baby` INNER JOIN `baby` ON vaccine_baby.cell = baby.BF_Cell WHERE vaccine_baby.numbers <> 1 ORDER BY `number` ASC";
 
 
         $STH = $this->DBH->query($query);
@@ -225,26 +225,27 @@ class Mother extends Database
         $STH->setFetchMode(PDO::FETCH_OBJ);
         $singleData = $STH->fetchAll();
         return $singleData;
-    } // end of mother_taken_vaccine()
+    } // end of baby_taken_vaccine()
+
 
     public function search($requestArray)
     {
         $sql = "";
 
         if (isset($requestArray['byID']) && isset($requestArray['byCell'])) {
-            $sql = "SELECT * FROM `mother`
+            $sql = "SELECT * FROM `baby`
                         WHERE `id` LIKE '%" . $requestArray['search'] . "%' 
-                        OR `M_Cell` LIKE '%" . $requestArray['search'] . "%'";
+                        OR `B_User` LIKE '%" . $requestArray['search'] . "%'";
         }
 
         if (isset($requestArray['byID']) && !isset($requestArray['byCell'])) {
-            $sql = "SELECT * FROM `mother`
+            $sql = "SELECT * FROM `baby`
                         WHERE `id` LIKE '%" . $requestArray['search'] . "%'";
         }
 
         if (!isset($requestArray['byID']) && isset($requestArray['byCell'])) {
-            $sql = "SELECT * FROM `mother`
-                        WHERE `M_Cell` LIKE '%" . $requestArray['search'] . "%'";
+            $sql = "SELECT * FROM `baby`
+                        WHERE `B_User` LIKE '%" . $requestArray['search'] . "%'";
         }
 
         $STH  = $this->DBH->query($sql);
@@ -263,13 +264,13 @@ class Mother extends Database
         $allData = $this->index();
 
         foreach ($allData as $oneData) {
-            $_allKeywords[] = trim($oneData->M_Name);
+            $_allKeywords[] = trim($oneData->B_Name);
         }
 
 
         foreach ($allData as $oneData) {
 
-            $eachString = strip_tags($oneData->M_Name);
+            $eachString = strip_tags($oneData->B_Name);
             $eachString = trim($eachString);
             $eachString = preg_replace("/\r|\n/", " ", $eachString);
             $eachString = str_replace("&nbsp;", "",  $eachString);
@@ -289,13 +290,13 @@ class Mother extends Database
         $allData = $this->index();
 
         foreach ($allData as $oneData) {
-            $_allKeywords[] = trim($oneData->M_Email);
+            $_allKeywords[] = trim($oneData->BM_Email);
         }
         $allData = $this->index();
 
         foreach ($allData as $oneData) {
 
-            $eachString = strip_tags($oneData->M_Email);
+            $eachString = strip_tags($oneData->BM_Email);
             $eachString = trim($eachString);
             $eachString = preg_replace("/\r|\n/", " ", $eachString);
             $eachString = str_replace("&nbsp;", "",  $eachString);
@@ -321,7 +322,7 @@ class Mother extends Database
         if ($start < 0) $start = 0;
 
 
-        $sql = "SELECT * FROM `mother` LIMIT $start,$itemsPerPage";
+        $sql = "SELECT * FROM `baby` LIMIT $start,$itemsPerPage";
 
 
         $STH = $this->DBH->query($sql);

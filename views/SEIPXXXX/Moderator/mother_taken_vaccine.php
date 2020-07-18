@@ -18,7 +18,7 @@ $obj->setData($_GET);
 
 $usercell = $_GET['id'];
 
-$singleData = $obj->taken_vaccine();
+$singleData = $obj->mother_taken_vaccine();
 
 ?>
 
@@ -43,17 +43,17 @@ $singleData = $obj->taken_vaccine();
             <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
                     <a href="create_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Mother Account</a>
-                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
+                    <a href="create_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
                     <div class="w3-dropdown-hover">
                         <button class="w3-button w3-black" style="text-decoration: none">
                             All Data List <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none"> Mother</a>
-                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
+                            <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none"> Mother</a>
+                            <a href="index_baby.php " class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
                         </div>
                     </div>
-                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
+                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none;">Update Profile</a>
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
                         <a href="../User/Authentication/moderator_logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
@@ -80,11 +80,10 @@ $singleData = $obj->taken_vaccine();
                     if ($usercell == $vaccine->cell) {
                         echo "
                             <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
-                                <a href='edit.php?id=$vaccine->id' type='button' class='btn btn-primary'>Edit Info</a>
+                                
                             </div>
                             <ul class='w3-ul w3-card-4'>
-                                <li class='w3-padding-64'>
-                                    <span class='w3-label-lg w3-red' style='padding: 5px'>ID - $vaccine->id</span><br>";
+                                <li class='w3-padding-64'>";
                         if ($vaccine->numbers == '2') {
 
                             $values = $vaccine->number;
@@ -99,14 +98,13 @@ $singleData = $obj->taken_vaccine();
                             // echo $values;
                             $values = $values - 1;
                             $value = strval($values);
-                            echo "<span class='w3-xxlarge'>Vaccine: TT-$value</span><br>";
+                            echo "<span class='w3-xlarge'>Vaccine: TT-$value</span><br><br>";
                             echo "<span class='w3-large'>Taken Date: $vaccine->pdate </span><br> ";
                         } else {
-                            echo "<span class='w3-xxlarge'>Vaccine: TT-$vaccine->number</span><br>";
+                            echo "<span class='w3-xlarge'>Vaccine: TT-$vaccine->number</span><br><br>";
                             echo "<span class='w3-large'>Taken Date: $vaccine->ndate</span><br>";
                         }
-                        echo "<span class='w3-xlarge'>Numbers-$vaccine->numbers</span><br>
-                                </li>
+                        echo "</li>
                             </ul>
                         ";
                     }

@@ -90,7 +90,7 @@ if (isset($_REQUEST['search'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>All User Data</title>
+    <title>All Mother Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
@@ -120,14 +120,14 @@ if (isset($_REQUEST['search'])) {
             <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
                     <a href="create_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Mother Account</a>
-                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
+                    <a href="create_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
                     <div class="w3-dropdown-hover">
                         <button class="w3-button w3-black" style="text-decoration: none">
                             All Data List <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
                             <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none"> Mother</a>
-                            <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
+                            <a href="index_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
                         </div>
                     </div>
                     <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
@@ -188,7 +188,7 @@ if (isset($_REQUEST['search'])) {
 
             <div class="row">
                 <div class="col-sm-12" style="text-align: right;">
-                    <a href="create_mother.php" class="btn w3-indigo w3-hover-indigo" style="text-decoration: none">Create New Mother Account</a>
+                    <a href="create_mother.php" class="btn w3-blue w3-hover-indigo" style="text-decoration: none">Create New Mother Account</a>
                 </div>
             </div>
 
@@ -244,9 +244,7 @@ if (isset($_REQUEST['search'])) {
                                                     <td>$row->M_Name</td>
                                                     <td>$row->M_Cell</td>
                                                     <td>
-                                                        <a href='taken_vaccine.php?id=$row->M_Cell' type='button' class='btn btn-primary'>Taken</a>
-                                                        <a href='#' type='button' class='btn btn-success'>Previous</a>
-                                                        <a href='#' type='button' class='btn btn-danger'>V Schedule</a>
+                                                        <a href='mother_taken_vaccine.php?id=$row->M_Cell' type='button' class='btn w3-indigo w3-hover-blue'>Taken Vaccine</a>
                                                     </td>
                                                 </tr>
                                             ";

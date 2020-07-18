@@ -47,7 +47,7 @@ $singleData = $obj->view();
             <div class="w3-bar w3-border w3-light-grey">
                 <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
                 <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
-                <a href="create_user.php" class="w3-bar-item w3-button" style="text-decoration: none">Create User</a>
+                
                 <div class="w3-dropdown-hover">
                     <button class="w3-button" style="text-decoration: none">
                         All Data List <i class="fa fa-caret-down"></i>

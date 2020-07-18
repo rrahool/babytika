@@ -41,7 +41,7 @@ $singleData = $obj->view();
             <div class="w3-bar w3-border w3-light-grey">
                 <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
                 <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
-                <a href="create_user.php" class="w3-bar-item w3-button" style="text-decoration: none">Create User</a>
+                
                 <div class="w3-dropdown-hover">
                     <button class="w3-button" style="text-decoration: none">
                         All Data List <i class="fa fa-caret-down"></i>
@@ -79,10 +79,8 @@ $singleData = $obj->view();
                         <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
                             <a href='edit_moderator.php?id=$singleData->id' type='button' class='btn btn-primary'>Edit Info</a>
                         </div>
-                        <ul class='w3-ul w3-card-4'>
+                        <ul class='w3-ul w3-card-6' style='padding-left: 50px;'>
                             <li class='w3-padding-64'>
-                                <p>Photo</p>
-                                <img src='../../../images/m1.jpg' class='w3-left w3-round w3-margin-right' style='width:160px; height: 160px'>
                                 <span class='w3-label-lg w3-red' style='padding: 5px'>ID - $singleData->id</span><br>
                                 <span class='w3-xxlarge'>$singleData->first_name</span><br>
                                 <p class=''><b>Email: </b>$singleData->email</p>

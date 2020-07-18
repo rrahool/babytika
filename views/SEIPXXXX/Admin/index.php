@@ -119,7 +119,7 @@ if (isset($_REQUEST['search'])) {
                 <div class="w3-bar w3-border w3-light-grey">
                     <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
                     <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
-                    <a href="create_user.php" class="w3-bar-item w3-button" style="text-decoration: none">Create User</a>
+                    
                     <div class="w3-dropdown-hover">
                         <button class="w3-button w3-black" style="text-decoration: none">
                             All Data List <i class="fa fa-caret-down"></i>
@@ -131,7 +131,7 @@ if (isset($_REQUEST['search'])) {
                         </div>
                     </div>
                     <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Registration Request</a>
-                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
+                    <a href="edit_admin_profile.php" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
                         <a href="../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>

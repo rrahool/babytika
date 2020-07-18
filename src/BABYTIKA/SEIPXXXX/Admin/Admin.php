@@ -43,7 +43,7 @@ class Admin extends Database
 
     public function store(){
 
-        $query = "INSERT INTO `tbl_book_title` (`admin_name`, `admin_email`, `admin_password`) VALUES (?, ?, ?);";
+        $query = "INSERT INTO `admin_info` (`admin_name`, `admin_email`, `admin_password`) VALUES (?, ?, ?);";
 
         // Utility::dd($query);
 
@@ -53,16 +53,16 @@ class Admin extends Database
         $result = $STH->execute($dataArray);
 
         if($result){
-            Message::message("Success :) Data Inserted Successfully.");
+            Message::message("Success :) Admin Created Successfully.");
         }
         else{
-            Message::message("Failure :( Data Not Inserted!");
+            Message::message("Failure :( Admin Not Created!");
         }
     } // end of store()
 
     public function index(){
 
-        $query = "SELECT * FROM `tbl_book_title` WHERE is_trashed = 'No'";
+        $query = "SELECT * FROM `admin_info` WHERE is_trashed = 'No'";
 
         $STH = $this->DBH->query($query);
 
@@ -74,7 +74,7 @@ class Admin extends Database
 
      public function view(){
 
-            $query = "SELECT * FROM `tbl_book_title` WHERE `id`=".$this->id;
+            $query = "SELECT * FROM `admin_info` WHERE `id`=".$this->id;
 
             $STH = $this->DBH->query($query);
 
@@ -86,7 +86,7 @@ class Admin extends Database
 
     public function update(){
 
-        $query = "UPDATE `tbl_book_title` SET `admin_name` = ?, `admin_email` = ?, `admin_password` = ? WHERE `id` = $this->id;";
+        $query = "UPDATE `admin_info` SET `admin_name` = ?, `admin_email` = ?, `admin_password` = ? WHERE `id` = $this->id;";
 
        //Utility::dd($query);
 
@@ -96,16 +96,16 @@ class Admin extends Database
         $result = $STH->execute($dataArray);
 
         if($result){
-            Message::message("Success :) Data Updated Successfully.");
+            Message::message("Success :) Admin Profile Updated Successfully.");
         }
         else{
-            Message::message("Failure :( Data Not Updated!");
+            Message::message("Failure :( Admin Profile Not Updated!");
         }
     } // end of update()
 
 
     public function trash(){
-        $query = "UPDATE `tbl_book_title` SET is_trashed = NOW() WHERE `id` = $this->id;";
+        $query = "UPDATE `admin_info` SET is_trashed = NOW() WHERE `id` = $this->id;";
 
         //Utility::dd($query);
 
@@ -123,7 +123,7 @@ class Admin extends Database
 
     public function trashed(){
 
-        $query = "SELECT * FROM `tbl_book_title` WHERE is_trashed <> 'No'";
+        $query = "SELECT * FROM `admin_info` WHERE is_trashed <> 'No'";
 
         $STH = $this->DBH->query($query);
 
@@ -136,7 +136,7 @@ class Admin extends Database
 
 
     public function recover(){
-            $query = "UPDATE `tbl_book_title` SET is_trashed = 'No' WHERE `id` = $this->id;";
+            $query = "UPDATE `admin_info` SET is_trashed = 'No' WHERE `id` = $this->id;";
 
             //Utility::dd($query);
 
@@ -152,17 +152,17 @@ class Admin extends Database
         } // end of recover()
 
     public function delete(){
-        $query = "DELETE FROM `tbl_book_title` WHERE `id` = $this->id;";
+        $query = "DELETE FROM `admin_info` WHERE `id` = $this->id;";
 
         //Utility::dd($query);
 
         $result = $this->DBH->exec($query);
 
         if($result){
-            Message::message("Success :) Data Deleted Successfully.");
+            Message::message("Success :) Admin Deleted Successfully.");
         }
         else{
-            Message::message("Failure :( Data Not Deleted!");
+            Message::message("Failure :( Admin Not Deleted!");
         }
 
 
@@ -171,9 +171,9 @@ class Admin extends Database
 
     public function search($requestArray){
         $sql = "";
-        if( isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND (`admin_name` LIKE '%".$requestArray['search']."%' OR `admin_email` LIKE '%".$requestArray['search']."%')";
-        if(isset($requestArray['byTitle']) && !isset($requestArray['byAuthor']) ) $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND `admin_name` LIKE '%".$requestArray['search']."%'";
-        if(!isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `tbl_book_title` WHERE `is_trashed` ='No' AND `admin_email` LIKE '%".$requestArray['search']."%'";
+        if( isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `admin_info` WHERE `is_trashed` ='No' AND (`admin_name` LIKE '%".$requestArray['search']."%' OR `admin_email` LIKE '%".$requestArray['search']."%')";
+        if(isset($requestArray['byTitle']) && !isset($requestArray['byAuthor']) ) $sql = "SELECT * FROM `admin_info` WHERE `is_trashed` ='No' AND `admin_name` LIKE '%".$requestArray['search']."%'";
+        if(!isset($requestArray['byTitle']) && isset($requestArray['byAuthor']) )  $sql = "SELECT * FROM `admin_info` WHERE `is_trashed` ='No' AND `admin_email` LIKE '%".$requestArray['search']."%'";
 
         $STH  = $this->DBH->query($sql);
         $STH->setFetchMode(PDO::FETCH_OBJ);
@@ -251,7 +251,7 @@ class Admin extends Database
         if($start<0) $start = 0;
 
 
-        $sql = "SELECT * from tbl_book_title  WHERE is_trashed = 'No' LIMIT $start,$itemsPerPage";
+        $sql = "SELECT * from admin_info  WHERE is_trashed = 'No' LIMIT $start,$itemsPerPage";
 
 
         $STH = $this->DBH->query($sql);
@@ -273,7 +273,7 @@ class Admin extends Database
         if($start<0) $start = 0;
 
 
-        $sql = "SELECT * from tbl_book_title WHERE is_trashed <> 'No'  LIMIT $start,$itemsPerPage";
+        $sql = "SELECT * from admin_info WHERE is_trashed <> 'No'  LIMIT $start,$itemsPerPage";
 
 
         $STH = $this->DBH->query($sql);
@@ -289,7 +289,7 @@ class Admin extends Database
 
     public function trashList(){
 
-        $sql = "Select * from tbl_book_title where is_trashed <> 'No'";
+        $sql = "Select * from admin_info where is_trashed <> 'No'";
 
         $STH = $this->DBH->query($sql);
 
