@@ -56,7 +56,7 @@
                                 <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">All User Data</a>
                             </div>
                         </div>
-                        <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Registration Request</a>
+                        
                         <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
                         <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                         <span style="text-align: right">
