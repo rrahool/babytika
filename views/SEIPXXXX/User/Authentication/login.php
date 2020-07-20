@@ -16,7 +16,7 @@ if($status){
                             <strong>Welcome!</strong> You have successfully logged in.
                 </div>");
     
-     Utility::redirect('../../Admin/index.php?id=');
+     Utility::redirect('../../Admin/index.php');
 
 }else{
     Message::message("

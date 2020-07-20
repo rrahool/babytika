@@ -12,6 +12,8 @@ $objBaby = new Baby();
 
 $objBaby->setData($_POST);
 
+// Utility::dd($objBaby);
+
 $objBaby->store_baby_taken_vaccine();
 
 Utility::redirect("$path");

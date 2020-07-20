@@ -28,7 +28,6 @@ class Mother extends Database
 
     // for vaccine update
     public $taken;
-    public $cell;
     public $number;
 
 
@@ -69,10 +68,6 @@ class Mother extends Database
 
         if (array_key_exists("taken", $postArray)) {
             $this->taken = $postArray['taken'];
-        }
-
-        if (array_key_exists("cell", $postArray)) {
-            $this->cell = $postArray['cell'];
         }
 
         if (array_key_exists("number", $postArray)) {
@@ -201,7 +196,7 @@ class Mother extends Database
 
     public function store_mother_taken_vaccine()
     {
-        $query = "UPDATE `vaccine` SET `status` = $this->taken, `status_date` = CURDATE() WHERE `cell` = $this->cell AND `number` = $this->number";
+        $query = "UPDATE `vaccine` SET `status` = $this->taken, `status_date` = CURDATE() WHERE `cell` = $this->M_Cell AND `number` = $this->number";
 
         $result = $this->DBH->exec($query);
 
@@ -210,14 +205,15 @@ class Mother extends Database
         } else {
             Message::message("Failure :( Vaccine Info Not Updated!");
         }
-
     } // end of store_mother_taken_vaccine()
 
 
     public function mother_taken_vaccine()
     {
 
-        $query = "SELECT * FROM `vaccine` INNER JOIN `mother` ON vaccine.cell = mother.M_Cell WHERE vaccine.numbers <> 1 ORDER BY `number` ASC";
+        // $query = "SELECT * FROM `vaccine` INNER JOIN `mother` ON vaccine.cell = mother.M_Cell WHERE vaccine.numbers <> 1 ORDER BY `number` ASC";
+
+        $query = "SELECT m.id, v.cell, v.pdate, v.ndate, v.number, v.numbers, v.status, v.status_date, m.M_Cell FROM vaccine AS v INNER JOIN mother AS m ON v.cell = m.M_Cell ORDER BY v.number ASC";
 
 
         $STH = $this->DBH->query($query);

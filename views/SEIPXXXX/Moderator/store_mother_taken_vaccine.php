@@ -12,6 +12,8 @@ $objMother = new Mother();
 
 $objMother->setData($_POST);
 
+// Utility::dd($objMother);
+
 $objMother->store_mother_taken_vaccine();
 
 Utility::redirect("$path");
