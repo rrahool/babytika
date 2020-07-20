@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2020 at 05:24 PM
+-- Generation Time: Jul 20, 2020 at 11:38 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -41,12 +41,13 @@ CREATE TABLE `admin_info` (
 --
 
 INSERT INTO `admin_info` (`id`, `admin_name`, `admin_email`, `admin_password`, `is_trashed`) VALUES
-(35, 'Tanjil', 'tanjil@gmail.com', '112233', 'No'),
-(36, 'John Doe', 'john@doe.com', '123456', 'No'),
-(37, 'Mary Jane', 'mary.jane@yahoo.com', '112233', 'No'),
-(38, 'Thomas Shelby', 'thomas@outlook.com', '112233', 'No'),
-(39, 'aaaaa', 'aa@gg.co', '112233', 'No'),
-(41, 'zzzz', 'zz@yy.co', '112233', 'No');
+(35, 'Tanjil', 'tanjil@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', 'No'),
+(36, 'John Doe', 'john@doe.com', 'e10adc3949ba59abbe56e057f20f883e', 'No'),
+(37, 'Mary Jane', 'mary.jane@yahoo.com', 'd0970714757783e6cf17b26fb8e2298f', 'No'),
+(38, 'Thomas Shelby', 'thomas@outlook.com', 'd0970714757783e6cf17b26fb8e2298f', 'No'),
+(39, 'aaaaa', 'aa@gg.co', 'd0970714757783e6cf17b26fb8e2298f', 'No'),
+(41, 'zzzz', 'zz@yy.co', 'd0970714757783e6cf17b26fb8e2298f', 'No'),
+(44, 'Tanjil Islam', 'tanjil.ctg01@gmail.com', 'd0970714757783e6cf17b26fb8e2298f', 'No');
 
 -- --------------------------------------------------------
 
@@ -72,13 +73,10 @@ CREATE TABLE `baby` (
 --
 
 INSERT INTO `baby` (`id`, `B_Name`, `BM_Email`, `B_User`, `BF_Cell`, `B_Pass`, `B_Day`, `B_Gender`, `otp`, `status`) VALUES
-(1, 'Karim', 'shafkatislam1@gmail.com', '01828726867', '01812345678', '1234', '2020-07-08', 'Male', 574938, 'Yes'),
-(2, 'abc', 's.tanjilislam@gmail.com', '01616557756', '01836245719', '11223344', '2020-07-15', 'Male', 450833, 'No'),
-(3, 'tanjil masud', 'tanjiltajil@gmail.com', '01616557759', '01536206749', '11223344', '2020-07-16', 'Male', 886365, 'Yes'),
-(4, 'tanjil masud', 'tanjiltajil@gmail.com', '01616557781', '01616557784', '11223344', '2020-07-15', 'Male', 200240, 'Yes'),
-(5, 'masud', 's.tanjilislam@gmail.com', '01616557767', '01616557759', '11223344', '2020-07-09', 'Male', 25825, 'No'),
-(6, 'Jarrie', 'mary@gmail.com', '123456789', '987456123', '112233', '2020-07-15', 'Male', NULL, ''),
-(7, 'BBB', 'bb@gg.vp', '6565665', '11131', '112233', '2020-07-18', 'Female', NULL, '');
+(1, 'Shafkat', 'shafkaait@gmail.com', '01828726867', '01812345678', '1234', '2020-07-01', 'Male', 66352, 'Yes'),
+(2, 'tanjil masud', 'tanjil.ctg01@gmail.com', '01836245719', '01616557756', '11223344', '2020-07-12', 'Male', 598680, 'Yes'),
+(3, 'babu', 'tanjiltajil@gmail.com', '01616557761', '0166557782', '11223344', '2020-07-02', 'Male', NULL, ''),
+(4, 'rudra', 'tanjiltajil@gmail.com', '01615557741', '01615557782', '11223344', '2020-07-01', 'Male', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -398,8 +396,8 @@ INSERT INTO `vaccine` (`id`, `cell`, `pdate`, `ndate`, `number`, `numbers`, `sta
 (2, '01836245719', '2020-03-01', '2020-03-01', 1, 3, 0, ''),
 (3, '01836245719', '2020-05-12', '2020-05-12', 2, 3, 0, ''),
 (4, '01836245719', '2020-07-14', '2021-07-13', 4, 2, 0, ''),
-(5, '01812743059', '2020-07-14', '2020-07-15', 2, 3, 0, ''),
-(6, '01836245719', '2021-07-13', '2022-07-12', 5, 2, 0, '2020-07-17');
+(5, '01812743059', '2020-07-14', '2020-07-15', 2, 2, 0, ''),
+(6, '01836245719', '2021-07-13', '2022-07-12', 5, 2, 0, '');
 
 -- --------------------------------------------------------
 
@@ -416,7 +414,7 @@ CREATE TABLE `vaccine_baby` (
   `numbers` int(11) NOT NULL,
   `vaccine` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `status_date` varchar(255) NOT NULL
+  `status_date` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -424,8 +422,13 @@ CREATE TABLE `vaccine_baby` (
 --
 
 INSERT INTO `vaccine_baby` (`id`, `cell`, `pdate`, `ndate`, `number`, `numbers`, `vaccine`, `status`, `status_date`) VALUES
-(1, '01616557784', '2020-07-19', '2020-07-19', 3, 1, ' OPV-1, Hepatitis B-1, DPT-1', 0, ''),
-(2, '01616557784', '2020-07-19', '2020-08-17', 4, 2, ' OPV-2, Hepatitis B-2, DPT-2', 0, '');
+(1, '01616557756', '2020-07-17', '2020-07-17', 1, 3, ' BCG, Hepatitis B', 0, NULL),
+(2, '01616557756', '2020-07-18', '2020-07-18', 2, 3, ' OPV-0', 0, NULL),
+(3, '01616557756', '2020-07-20', '2020-07-20', 3, 1, ' OPV-1, Hepatitis B-1, DPT-1', 0, NULL),
+(4, '01616557756', '2020-07-20', '2020-08-18', 4, 2, ' OPV-2, Hepatitis B-2, DPT-2', 0, NULL),
+(5, '01616557756', '2020-08-18', '2020-09-16', 5, 2, ' OPV-3, Hepatitis B-3, DPT-3', 0, NULL),
+(6, '01615557782', '2020-07-16', '2020-07-16', 1, 3, ' BCG, Hepatitis B', 0, NULL),
+(7, '01615557782', '2020-07-20', '2020-07-20', 2, 1, ' OPV-0', 0, NULL);
 
 --
 -- Indexes for dumped tables
@@ -517,13 +520,13 @@ ALTER TABLE `vaccine_baby`
 -- AUTO_INCREMENT for table `admin_info`
 --
 ALTER TABLE `admin_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `baby`
 --
 ALTER TABLE `baby`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `moderator`
@@ -589,7 +592,7 @@ ALTER TABLE `vaccine`
 -- AUTO_INCREMENT for table `vaccine_baby`
 --
 ALTER TABLE `vaccine_baby`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
