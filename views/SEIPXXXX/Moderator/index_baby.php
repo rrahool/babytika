@@ -221,7 +221,7 @@ if (isset($_REQUEST['search'])) {
 
             </div>
 
-            <div class="row" style="margin-top: 10px;">
+            <div class="row" style="margin-top: 10px; margin-bottom: 100px;">
                 <div class="col-sm-12">
                     <table class="table-bordered w3-table-all w3-hoverable">
                         <thead>

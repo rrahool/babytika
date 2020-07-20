@@ -8,6 +8,17 @@ $msg = Message::message();
 
 echo "<div> <div id='message'> $msg </div> </div>";
 
+$today = strftime('%F');
+
+$todays = explode ("-", $today); 
+$year= $todays[0];
+
+$month = $todays[1];
+
+$day = $todays[2];
+
+$days = (($year*12)+$month)*30+$day;
+
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +129,14 @@ echo "<div> <div id='message'> $msg </div> </div>";
                         <input type="text" class="form-control" id="M_Week" placeholder="Enter Pregnency Week" name="M_Week">
                     </div>
                 </div>
+
+                <div class="form-group" style="display: none;">
+                    <label class="control-label col-sm-4" for="M_Week">Today:</label>
+                    <div class="col-sm-8">
+                        <input type="hidden" class="form-control" id="M_Date" value="<?php print $days;?>" name="M_Date">
+                    </div>
+                </div>
+                    
                 
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="M_Pass">Password:</label>

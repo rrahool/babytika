@@ -18,8 +18,7 @@ $obj->setData($_GET);
 
 $usercell = $_GET['id'];
 
-
-$singleData = $obj->mother_taken_vaccine();
+$singleData = $obj->mother_taken_vaccine($usercell);
 
 // Utility::dd($singleData);
 
@@ -79,96 +78,103 @@ $singleData = $obj->mother_taken_vaccine();
                 </header>
 
                 <?php
-                foreach ($singleData as $vaccine) {
-                    if ($usercell == $vaccine->cell) {
-                        echo "
-                            <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
-                                
-                            </div>
-                            <ul class='w3-ul w3-card-4'>
-                                <li class='w3-padding-64'>";
-                                    if ($vaccine->numbers == '2') {
-
-                                        $values = $vaccine->number;
-                                        $status = $vaccine->status;
-
-                                        $final_value = $values;
-                                        $final_status = $status;
-                                        $final_date = $vaccine->ndate;
-                                        
-                                        $v = intval($values);
-                                        $values = intval($v);
-
-                                        $values = $values - 1;
-                                        $value = strval($values);
-                                        echo "<span class='w3-xlarge'>Vaccine: TT-$value</span><br><br>";
-                                        echo "<span class='w3-large'>Taken Date: $vaccine->pdate </span><br> ";
-                                    } else if ($vaccine->numbers == '1') {
-                                        $values = $vaccine->number;
-                                        $status = $vaccine->status;
-
-                                        $final_value = $values;
-                                        $final_status = $status;
-                                        $final_date = $vaccine->ndate;
-                                        
-                                        $v = intval($values);
-                                        $values = intval($v);
-                                        $values = $values - 1;
-                                        $value = strval($values);
-                                    } else {
-                                        echo "<span class='w3-xlarge'>Vaccine: TT-$vaccine->number</span><br><br>";
-                                        echo "<span class='w3-large'>Taken Date: $vaccine->ndate</span><br>";
-                                    }
-                        echo "</li>
-                            </ul>
-                        ";
-                    }
-                }          
-
-                //  if ($usercell == $vaccine->cell) {
-                    if($final_status == '0') {
-                        if ($final_value != '6') {
+                if ($singleData == null) {
+                    $final_status = 'x';
+                } else {
+                    foreach ($singleData as $vaccine) {
+                        if ($usercell == $vaccine->cell) {
                             echo "
-                                <div class='col-md-12' style='margin-top: 5px; text-align: right; display: none;'>
-                                        <a href='edit.php?id=$vaccine->id' type='button' class='btn btn-primary'>Edit Info</a>
+                                <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
+                                    
                                 </div>
                                 <ul class='w3-ul w3-card-4'>
-                                    <li class='w3-padding-64'>
-                                        <span class='w3-label-lg w3-red' style='padding: 5px'>Pending</span><br>
-                                        <span class='w3-xxlarge'>Vaccine: TT-$final_value</span><br>
-                                        <div class='col-md-5'>
-                                            <span class='w3-large'>Schedule Date: $final_date</span><br><br>
-                                        </div>
-                                        <div class='col-md-7'>
-                                            <span class='w3-large'>
-                                                    <form class='form-horizontal' action='store_mother_taken_vaccine.php' method='post'>
-    
-                                                        <input type='hidden' class='form-control' id='number' name='number' value='$final_value'>
-                                                        <input type='hidden' class='form-control' id='M_Cell' name='M_Cell' value='$usercell'>
-    
-                                                        <div class='form-group'>
-                                                            <label class='col-sm-3 w3-text-green' for='taken'>Taken: </label>
-                                                            <div class='col-sm-9'>
-                                                                <span>
-                                                                    <input type='radio' name='taken' value='1' required> Yes
-                                                                    <input type='radio' name='taken' value='0' required> No 
-                                                                </span>
-                                                                <button type='submit' name='submit' class='btn btn-default' onclick='return confirm_mobile()'>Done</button>
-                                                            </div>
-                                                        </div>  
-    
-                                                    </form>
-                                            </span>
-                                        </div>
-                                    </li>
+                                    <li class='w3-padding-64'>";
+                            if ($vaccine->numbers == '2') {
+
+                                $values = $vaccine->number;
+                                $status = $vaccine->status;
+
+                                $final_value = $values;
+                                $final_status = $status;
+                                $final_date = $vaccine->ndate;
+
+                                $v = intval($values);
+                                $values = intval($v);
+
+                                $values = $values - 1;
+                                $value = strval($values);
+                                echo "<span class='w3-xlarge'>Vaccine: TT-$value</span><br><br>";
+                                echo "<span class='w3-large'>Taken Date: $vaccine->pdate </span><br> ";
+                            } else if ($vaccine->numbers == '1') {
+                                $values = $vaccine->number;
+                                $status = $vaccine->status;
+
+                                $final_value = $values;
+                                $final_status = $status;
+                                $final_date = $vaccine->ndate;
+
+                                $v = intval($values);
+                                $values = intval($v);
+                                $values = $values - 1;
+                                $value = strval($values);
+                            } else {
+                                echo "<span class='w3-xlarge'>Vaccine: TT-$vaccine->number</span><br><br>";
+                                echo "<span class='w3-large'>Taken Date: $vaccine->ndate</span><br>";
+                            }
+                            echo "</li>
                                 </ul>
                             ";
+                        }
+                    }
+                }
+
+
+                if ($final_status == 'x') {
+                    echo "<h4>No Vaccine Schedule Found.</h4>";
+                } else {
+                    //  if ($usercell == $vaccine->cell) {
+                    if ($final_status == '0') {
+                        if ($final_value != '6') {
+                            echo "
+                                    <div class='col-md-12' style='margin-top: 5px; text-align: right; display: none;'>
+                                            <a href='edit.php?id=$vaccine->id' type='button' class='btn btn-primary'>Edit Info</a>
+                                    </div>
+                                    <ul class='w3-ul w3-card-4'>
+                                        <li class='w3-padding-64'>
+                                            <span class='w3-label-lg w3-red' style='padding: 5px'>Pending</span><br>
+                                            <span class='w3-xxlarge'>Vaccine: TT-$final_value</span><br>
+                                            <div class='col-md-5'>
+                                                <span class='w3-large'>Schedule Date: $final_date</span><br><br>
+                                            </div>
+                                            <div class='col-md-7'>
+                                                <span class='w3-large'>
+                                                        <form class='form-horizontal' action='store_mother_taken_vaccine.php' method='post'>
+        
+                                                            <input type='hidden' class='form-control' id='number' name='number' value='$final_value'>
+                                                            <input type='hidden' class='form-control' id='M_Cell' name='M_Cell' value='$usercell'>
+        
+                                                            <div class='form-group'>
+                                                                <label class='col-sm-3 w3-text-green' for='taken'>Taken: </label>
+                                                                <div class='col-sm-9'>
+                                                                    <span>
+                                                                        <input type='radio' name='taken' value='1' required> Yes
+                                                                    </span>
+                                                                    <button type='submit' name='submit' class='btn btn-default' onclick='return confirm_mobile()'>Done</button>
+                                                                </div>
+                                                            </div>  
+        
+                                                        </form>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                ";
                         } else {
                             echo "<h2>All vaccines have been taken </h2>";
                         }
                     } else {
-
                     }
+                }
                 // }
                 ?>
             </div>

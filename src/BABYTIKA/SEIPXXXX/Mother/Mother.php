@@ -25,6 +25,7 @@ class Mother extends Database
     public $M_Blood;
     public $M_Week;
     public $M_Pass;
+    public $M_Date;
 
     // for vaccine update
     public $taken;
@@ -66,6 +67,10 @@ class Mother extends Database
             $this->M_Pass = $postArray['M_Pass'];
         }
 
+        if (array_key_exists("M_Date", $postArray)) {
+            $this->M_Date = $postArray['M_Date'];
+        }
+
         if (array_key_exists("taken", $postArray)) {
             $this->taken = $postArray['taken'];
         }
@@ -77,10 +82,9 @@ class Mother extends Database
 
     public function store()
     {
+        $query = "INSERT INTO `mother` (`M_Name`, `M_Email`, `M_Cell`, `M_User`, `M_Blood`, `M_Week`, `M_Pass`, `M_Date`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Yes');";
 
-        $query = "INSERT INTO `mother` (`M_Name`, `M_Email`, `M_Cell`, `M_User`, `M_Blood`, `M_Week`, `M_Pass`) VALUES (?, ?, ?, ?, ?, ?, ?);";
-
-        $dataArray = array($this->M_Name, $this->M_Email, $this->M_Cell, $this->M_User, $this->M_Blood, $this->M_Week, $this->M_Pass);
+        $dataArray = array($this->M_Name, $this->M_Email, $this->M_Cell, $this->M_User, $this->M_Blood, $this->M_Week, $this->M_Pass, $this->M_Date);
 
         $STH = $this->DBH->prepare($query);
         $result = $STH->execute($dataArray);
@@ -208,18 +212,19 @@ class Mother extends Database
     } // end of store_mother_taken_vaccine()
 
 
-    public function mother_taken_vaccine()
+    public function mother_taken_vaccine($ucell)
     {
 
         // $query = "SELECT * FROM `vaccine` INNER JOIN `mother` ON vaccine.cell = mother.M_Cell WHERE vaccine.numbers <> 1 ORDER BY `number` ASC";
 
-        $query = "SELECT m.id, v.cell, v.pdate, v.ndate, v.number, v.numbers, v.status, v.status_date, m.M_Cell FROM vaccine AS v INNER JOIN mother AS m ON v.cell = m.M_Cell ORDER BY v.number ASC";
-
+        $query = "SELECT m.id, v.cell, v.pdate, v.ndate, v.number, v.numbers, v.status, v.status_date, m.M_Cell FROM vaccine AS v INNER JOIN mother AS m ON v.cell = m.M_Cell WHERE v.cell = $ucell ORDER BY v.number ASC";
 
         $STH = $this->DBH->query($query);
 
         $STH->setFetchMode(PDO::FETCH_OBJ);
         $singleData = $STH->fetchAll();
+        // Utility::dd($query);
+
         return $singleData;
     } // end of mother_taken_vaccine()
 

@@ -216,12 +216,12 @@ class Baby extends Database
     } // end of store_baby_taken_vaccine()
 
 
-    public function baby_taken_vaccine()
+    public function baby_taken_vaccine($ucell)
     {
 
         // $query = "SELECT * FROM `vaccine_baby` INNER JOIN `baby` ON vaccine_baby.cell = baby.BF_Cell WHERE vaccine_baby.numbers <> 1 ORDER BY `number` ASC";
 
-        $query = "SELECT b.id, vb.cell, vb.pdate, vb.ndate, vb.number, vb.numbers, vb.vaccine, vb.status, vb.status_date, b.BF_Cell FROM vaccine_baby AS vb INNER JOIN baby AS b ON vb.cell = b.BF_Cell";
+        $query = "SELECT b.id, vb.cell, vb.pdate, vb.ndate, vb.number, vb.numbers, vb.vaccine, vb.status, vb.status_date, b.BF_Cell FROM vaccine_baby AS vb INNER JOIN baby AS b ON vb.cell = b.BF_Cell WHERE vb.cell = $ucell ORDER BY vb.number ASC";
 
         
         
@@ -232,22 +232,6 @@ class Baby extends Database
         // Utility::dd($singleData);
         return $singleData;
     } // end of baby_taken_vaccine()
-
-
-    // public function mother_taken_vaccine()
-    // {
-
-    //     // $query = "SELECT * FROM `vaccine` INNER JOIN `mother` ON vaccine.cell = mother.M_Cell WHERE vaccine.numbers <> 1 ORDER BY `number` ASC";
-
-    //     $query = "SELECT m.id, v.cell, v.pdate, v.ndate, v.number, v.numbers, v.status, v.status_date, m.M_Cell FROM vaccine AS v INNER JOIN mother AS m ON v.cell = m.M_Cell ORDER BY v.number ASC";
-
-
-    //     $STH = $this->DBH->query($query);
-
-    //     $STH->setFetchMode(PDO::FETCH_OBJ);
-    //     $singleData = $STH->fetchAll();
-    //     return $singleData;
-    // } // end of mother_taken_vaccine()
 
 
     public function search($requestArray)
