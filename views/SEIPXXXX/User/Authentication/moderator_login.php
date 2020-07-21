@@ -21,7 +21,9 @@ if($status){
 }else{
     Message::message("
                 <div class=\"alert alert-danger\">
-                            <strong>Wrong information!</strong> Please try again.
+                    <h5>Whether you've provided Wrong information, Try Again</h5>
+                    or
+                    <h5>Please wait for Admin Approval if your account is New!</h5>
                 </div>");
 
     Utility::redirect('../Profile/signup_moderator.php');

@@ -136,7 +136,7 @@ else{
                                 <input type="password" name="confirm_new_password" placeholder="Confirm New Password" class="form-password form-control" id="form-password">
                             </div>
 
-                            <button type="submit" class="btn"> Click Here >> Please Email Me The Password Reset Link << Click Here</button>
+                            <button type="submit" class="btn">Email Me The Password Reset Link</button>
                         </form>
                     </div>
                 </div>

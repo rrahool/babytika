@@ -20,7 +20,7 @@ if($status){
     
     require '../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
     $mail = new PHPMailer();
-    $mail->IsSMTP();
+    // $mail->IsSMTP();
     $mail->SMTPDebug  = 0;
     $mail->SMTPAuth   = true;
     $mail->SMTPSecure = "ssl";
@@ -34,7 +34,7 @@ if($status){
     $mail->Subject    = "Your Account Activation Link";
     $message =  "
        Please click this link to verify your account:
-       http://motherandbabytika.xyz/babytika/views/SEIPXXXX/User/Profile/emailverification.php?email=".$_POST['email']."&email_token=".$_POST['email_token'];
+       http://localhost/babytika/views/SEIPXXXX/User/Profile/emailverification.php?email=".$_POST['email']."&email_token=".$_POST['email_token'];
 
 
 

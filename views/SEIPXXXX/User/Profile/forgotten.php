@@ -15,7 +15,7 @@ if(isset($_POST['email'])) {
 
     require '../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
     $mail = new PHPMailer();
-    $mail->IsSMTP();
+    // $mail->IsSMTP();
     $mail->SMTPDebug  = 0;
     $mail->SMTPAuth   = true;
     $mail->SMTPSecure = "ssl";
@@ -28,7 +28,7 @@ if(isset($_POST['email'])) {
     $mail->AddReplyTo("motherandbabytika@gmail.com","Mother & Baby Tika");
     $mail->Subject    = "Your Password Reset Link";
     $message =  "Please click this link to reset your password: 
-       http://motherandbabytika.xyz/babytika/views/SEIPXXXX/User/Profile/resetpassword.php?email=".$_POST['email']."&code=".$singleUser->password;
+       http://localhost/babytika/views/SEIPXXXX/User/Profile/resetpassword.php?email=".$_POST['email']."&code=".$singleUser->password;
     $mail->MsgHTML($message);
     if($mail->Send()){
 
@@ -99,16 +99,23 @@ if(isset($_POST['email'])) {
                 </td>
             </tr>
         </table>
-        <br><br> <br><br> <br>
+        <br><br>
+        <div class="row">
+                <a href="../../../../index.php" class="btn btn-default">Choose Login Panel</a>
+        </div>
+        <div class="row">
+                <a href="signup_moderator.php" class="btn">
+                    <h4>Go Back</h4>
+                </a>
+        </div>
         <div class="row" >
-            <div class="col-sm-12">
-
-
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
                 <div class="form-box" style="margin-top: 0%">
                     <div class="form-top">
                         <div class="form-top-left">
                             <h3>Need help with your password?</h3>
-                            <p>Please provide us your varified email</p>
+                            <p>Please provide here your varified email</p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-key"></i>
@@ -121,14 +128,12 @@ if(isset($_POST['email'])) {
                                 <input type="text" name="email" placeholder="Email..." class="form-email form-control" id="form-email">
                             </div>
 
-                            <button type="submit" class="btn"> Click Here >> Please Email Me The Password Reset Link << Click Here</button>
+                            <button type="submit" class="btn">Email Me The Password Reset Link</button>
                         </form>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-1 middle-border"></div>
-            <div class="col-sm-1"></div>
+            <div class="col-sm-3"></div>
         </div>
 
     </div>

@@ -76,7 +76,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
                         <div class="form-top">
                             <div class="form-top-left">
                                 <h3>Admin Login</h3>
-                                <p>Enter username and password to log on:</p>
+                                <p>Enter username and password to sign in:</p>
                             </div>
                             <div class="form-top-right">
                                 <i class="fa fa-key"></i>
@@ -92,7 +92,7 @@ use App\BABYTIKA\SEIPXXXX\Message\Message;
                                     <label class="sr-only" for="admin_password">Password</label>
                                     <input type="password" name="admin_password" placeholder="Password..." class="form-password form-control" id="admin_password">
                                 </div>
-                                <button type="submit" class="btn">Sign in!</button>
+                                <button type="submit" class="btn">Log in!</button>
                             </form>
                         </div>
                     </div>
