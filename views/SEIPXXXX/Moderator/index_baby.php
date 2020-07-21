@@ -130,7 +130,7 @@ if (isset($_REQUEST['search'])) {
                             <a href="index_baby.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none">Baby</a>
                         </div>
                     </div>
-                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
+                    <!-- <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a> -->
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
                         <a href="../User/Authentication/moderator_logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
@@ -245,7 +245,7 @@ if (isset($_REQUEST['search'])) {
                                                     </td>
                                                     <td>$serial</td>
                                                     <td>
-                                                        M0$row->id
+                                                        B0$row->id
                                                     </td>
                                                     <td>$row->B_Name</td>
                                                     <td>$row->B_User</td>

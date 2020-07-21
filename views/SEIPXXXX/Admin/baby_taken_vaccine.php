@@ -2,7 +2,7 @@
 
 require_once "../../../vendor/autoload.php";
 
-use App\BABYTIKA\SEIPXXXX\Mother\Mother;
+use App\BABYTIKA\SEIPXXXX\Baby\Baby;
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 
@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) {
     Utility::redirect("index.php");
 }
 
-$obj = new Mother();
+$obj = new Baby();
 
 $obj->setData($_GET);
 
@@ -20,9 +20,10 @@ $msg = Message::message();
 
 $usercell = $_GET['id'];
 
-$singleData = $obj->mother_taken_vaccine($usercell);
+$singleData = $obj->baby_taken_vaccine($usercell);
 
 // Utility::dd($singleData);
+
 
 ?>
 
@@ -57,6 +58,8 @@ $singleData = $obj->mother_taken_vaccine($usercell);
         <div class="row">
             <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
+                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
+                    <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
                     <a href="create_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Mother Account</a>
                     <a href="create_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
                     <div class="w3-dropdown-hover">
@@ -64,14 +67,18 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                             All Data List <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none"> Mother</a>
-                            <a href="index_baby.php " class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
+                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Admin</a>
+                                <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Moderator</a>
+                                <a href="index_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Mother</a>
+                                <a href="index_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
+                            </div>
                         </div>
                     </div>
-                    <!-- <a href="#" class="w3-bar-item w3-button" style="text-decoration: none;">Update Profile</a> -->
+                    <!-- <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a> -->
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
-                        <a href="../User/Authentication/moderator_logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
+                        <a href="../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
                     </span>
 
                 </div>
@@ -101,11 +108,13 @@ $singleData = $obj->mother_taken_vaccine($usercell);
             <div class="w3-card-4 w3-half" style='margin-bottom: 200px; padding-bottom: 30px;'>
 
                 <header class="w3-container w3-blue">
-                    <h2>Mother Taken Vaccine Info</h2>
+                    <h2>Baby Taken Vaccine Info</h2>
                 </header>
 
-
                 <?php
+
+                $arraynames = array("Select", "BCG, Hepatitis B", "OPV-0", "OPV-1, Hepatitis B-1, DPT-1", "OPV-2, Hepatitis B-2, DPT-2", "OPV-3, Hepatitis B-3, DPT-3", "Measles, Vitamin-A(Dose-1)", "Vitamin-A(Dose-2)", "Vitamin-A(Dose-3)", "Vitamin-A(Dose-4)", "Vitamin-A(Dose-5)", "Vitamin-A(Dose-6)", "Vitamin-A(Dose-7)", "Vitamin-A(Dose-8)", "Vitamin-A(Dose-9)", "DT Boaster", "TT");
+
                 if ($singleData == null) {
                     $final_status = 'x';
                 } else {
@@ -136,7 +145,7 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                                 echo "
                                                         <th width='30%'>Vaccine</th>
                                                         <td width='10%'>:</td>
-                                                        <td>TT-$value</td>
+                                                        <td>$arraynames[$values]</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -158,10 +167,11 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                                 $values = $values - 1;
                                 $value = strval($values);
                             } else {
+                                $final_num = $vaccine->number;
                                 echo "
                                                     <th width='30%'>Vaccine</th>
                                                     <td width='10%'>:</td>
-                                                    <td>TT-$vaccine->number</td>
+                                                    <td>$arraynames[$final_num]</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -193,7 +203,7 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                 } else {
                     //  if ($usercell == $vaccine->cell) {
                     if ($final_status == '0') {
-                        if ($final_value != '6') {
+                        if ($final_value != '17') {
                             echo "
                                 <div class='row' style='margin-top: 10px;'>
                                     <div class='col-sm-1'></div>
@@ -209,7 +219,7 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                                                     <tr class='text-center'> 
                                                         <th width='30%'>Vaccine</th>
                                                         <td width='10%'>:</td>
-                                                        <td>TT-$final_value</td>
+                                                        <td>$arraynames[$final_value]</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -217,11 +227,11 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                                                         <th>Schedule Date</th>
                                                         <td>:</td>
                                                         <td>$final_date</td>
-                                                        <td>
-                                                            <form class='form-horizontal' action='store_mother_taken_vaccine.php' method='post'>
+                                                        <td width='30%'>
+                                                            <form class='form-horizontal' action='store_baby_taken_vaccine.php' method='post'>
                                                                 <div class='form-group' style='display: none;'>
                                                                     <input type='hidden' class='form-control' id='number' name='number' value='$final_value'>
-                                                                    <input type='hidden' class='form-control' id='M_Cell' name='M_Cell' value='$usercell'>
+                                                                    <input type='hidden' class='form-control' id='BF_Cell' name='BF_Cell' value='$usercell'>
                                                                 </div> 
             
                                                                 <div class='form-group'>

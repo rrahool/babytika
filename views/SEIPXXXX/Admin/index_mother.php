@@ -5,7 +5,7 @@ if (!isset($_SESSION)) session_start();
 include_once('../../../vendor/autoload.php');
 
 use App\BABYTIKA\SEIPXXXX\User\User;
-use App\BABYTIKA\SEIPXXXX\User\ModeratorAuth;
+use App\BABYTIKA\SEIPXXXX\User\Auth;
 use App\BABYTIKA\SEIPXXXX\Mother\Mother;
 use App\BABYTIKA\SEIPXXXX\Message\Message;
 use App\BABYTIKA\SEIPXXXX\Utility\Utility;
@@ -14,7 +14,7 @@ $obj = new User();
 $obj->setData($_SESSION);
 $singleUser = $obj->view();
 
-$auth = new ModeratorAuth();
+$auth = new Auth();
 $status = $auth->setData($_SESSION)->logged_in();
 
 if (!$status) {
@@ -114,11 +114,11 @@ if (isset($_REQUEST['search'])) {
 
     <div class="container">
 
-
-
         <div class="row">
             <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
+                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
+                    <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
                     <a href="create_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Mother Account</a>
                     <a href="create_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
                     <div class="w3-dropdown-hover">
@@ -126,14 +126,16 @@ if (isset($_REQUEST['search'])) {
                             All Data List <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="index.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none"> Mother</a>
+                            <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Admin</a>
+                            <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Moderator</a>
+                            <a href="index_mother.php" class="w3-bar-item w3-button w3-green" style="text-decoration: none">Mother</a>
                             <a href="index_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
                         </div>
                     </div>
                     <!-- <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a> -->
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
-                        <a href="../User/Authentication/moderator_logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
+                        <a href="../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
                     </span>
 
                 </div>
@@ -162,7 +164,7 @@ if (isset($_REQUEST['search'])) {
             </div>
             <div class="col-sm-7">
                 <div class="w3-panel w3-card-8 text-right">
-                    <h3>Hello Moderator</h3>
+                    <h3>Hello Admin</h3>
                 </div>
             </div>
 

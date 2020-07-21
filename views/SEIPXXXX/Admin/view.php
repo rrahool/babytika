@@ -1,66 +1,73 @@
 <?php
 
-    require_once "../../../vendor/autoload.php";
+require_once "../../../vendor/autoload.php";
 
-    use App\BABYTIKA\SEIPXXXX\Admin\Admin;
-    use App\BABYTIKA\SEIPXXXX\Message\Message;
-    use App\BABYTIKA\SEIPXXXX\Utility\Utility;
+use App\BABYTIKA\SEIPXXXX\Admin\Admin;
+use App\BABYTIKA\SEIPXXXX\Message\Message;
+use App\BABYTIKA\SEIPXXXX\Utility\Utility;
 
-    if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
 
-        Message::message("You can't visit view.php without id (ex: view.php?id=23)");
-        Utility::redirect("index.php");
-    }
+    Message::message("You can't visit view.php without id (ex: view.php?id=23)");
+    Utility::redirect("index.php");
+}
 
-    $obj = new Admin();
+$obj = new Admin();
 
-    $obj->setData($_GET);
+$obj->setData($_GET);
 
-    $singleData = $obj->view();
+$singleData = $obj->view();
 
 ?>
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Admin Info - Single</title>
-        <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
-        <script src="../../../resource/assets/bootstrap/js/jquery.js"></script>
-        <script src="../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="../../../resource/assets/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Info - Single</title>
+    <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
+    <script src="../../../resource/assets/bootstrap/js/jquery.js"></script>
+    <script src="../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../resource/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
 
     <div class="container">
         <div class="col-md-12">
             <div class="w3-bar w3-border w3-light-grey">
-                        <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
-                        <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
-                        
-                        <div class="w3-dropdown-hover">
-                            <button class="w3-button" style="text-decoration: none">
-                                All Data List <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                                <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">All Admin Data</a>
-                                <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">All Moderator Data</a>
-                                
-                            </div>
+                <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
+                <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
+                <a href="create_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Mother Account</a>
+                <a href="create_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button" style="text-decoration: none">
+                        All Data List <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                            <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Admin</a>
+                            <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Moderator</a>
+                            <a href="index_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Mother</a>
+                            <a href="index_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
                         </div>
-                        
-                        <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
-                        <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
-                        <span style="text-align: right">
-                            <a href= "../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
-                        </span>
+
+                    </div>
+                </div>
+
+                <!-- <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a> -->
+                <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
+                <span style="text-align: right">
+                    <a href="../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
+                </span>
             </div>
         </div>
     </div>
     <div class="w3-container">
-        
+
         <div class="w3-row">
             <div style="min-height: 100px;"></div>
             <div class="w3-container w3-quarter"></div>
@@ -72,7 +79,7 @@
                 </header>
 
                 <?php
-                    echo "
+                echo "
                         <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
                             <a href='edit.php?id=$singleData->id' type='button' class='btn btn-primary'>Edit Info</a>
                         </div>
@@ -103,20 +110,20 @@
             <div class="col-md-8">
                 <table class="w3-table-all w3-hoverable">
                     <?php
-//                        echo "
-//                                <tr>
-//                                    <td>ID: </td>
-//                                    <td>$singleData->id</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Book Title: </td>
-//                                    <td>$singleData->admin_name</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Author: </td>
-//                                    <td>$singleData->admin_email</td>
-//                                </tr>
-//";
+                    //                        echo "
+                    //                                <tr>
+                    //                                    <td>ID: </td>
+                    //                                    <td>$singleData->id</td>
+                    //                                </tr>
+                    //                                <tr>
+                    //                                    <td>Book Title: </td>
+                    //                                    <td>$singleData->admin_name</td>
+                    //                                </tr>
+                    //                                <tr>
+                    //                                    <td>Author: </td>
+                    //                                    <td>$singleData->admin_email</td>
+                    //                                </tr>
+                    //";
                     ?>
                 </table>
             </div>
@@ -127,4 +134,5 @@
 
 
 </body>
+
 </html>

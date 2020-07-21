@@ -57,6 +57,8 @@ $singleData = $obj->mother_taken_vaccine($usercell);
         <div class="row">
             <div class="col-md-12">
                 <div class="w3-bar w3-border w3-light-grey">
+                    <a href="create.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Admin</a>
+                    <a href="create_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Moderator</a>
                     <a href="create_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Mother Account</a>
                     <a href="create_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Create Baby Account</a>
                     <div class="w3-dropdown-hover">
@@ -64,14 +66,18 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                             All Data List <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none"> Mother</a>
-                            <a href="index_baby.php " class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
+                            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                <a href="index.php" class="w3-bar-item w3-button" style="text-decoration: none">Admin</a>
+                                <a href="index_moderator.php" class="w3-bar-item w3-button" style="text-decoration: none">Moderator</a>
+                                <a href="index_mother.php" class="w3-bar-item w3-button" style="text-decoration: none">Mother</a>
+                                <a href="index_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
+                            </div>
                         </div>
                     </div>
                     <!-- <a href="#" class="w3-bar-item w3-button" style="text-decoration: none;">Update Profile</a> -->
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
-                        <a href="../User/Authentication/moderator_logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
+                        <a href="../User/Authentication/logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
                     </span>
 
                 </div>
@@ -103,7 +109,6 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                 <header class="w3-container w3-blue">
                     <h2>Mother Taken Vaccine Info</h2>
                 </header>
-
 
                 <?php
                 if ($singleData == null) {
@@ -294,6 +299,7 @@ $singleData = $obj->mother_taken_vaccine($usercell);
         });
     </script> -->
 
+
     <script type="text/javascript">
         function confirm_mobile() {
             return confirm('User need to confirm from Mobile Apps...');
@@ -314,7 +320,7 @@ $singleData = $obj->mother_taken_vaccine($usercell);
             }
         )
     </script>
-
+    
     <script>
         $('.alert').slideDown("slow").delay(2000).slideUp("slow");
     </script>

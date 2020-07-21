@@ -16,6 +16,8 @@ $obj = new Baby();
 
 $obj->setData($_GET);
 
+$msg = Message::message();
+
 $usercell = $_GET['id'];
 
 $singleData = $obj->baby_taken_vaccine($usercell);
@@ -31,11 +33,22 @@ $singleData = $obj->baby_taken_vaccine($usercell);
 <head>
     <meta charset="UTF-8">
     <title>Taken Vaccine Info</title>
+    
     <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../resource/assets/w3css/4/w3.css">
-    <script src="../../../resource/assets/bootstrap/js/jquery.js"></script>
     <script src="../../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../resource/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../resource/assets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- required for search, block3 of 5 start -->
+
+    <link rel="stylesheet" href="../../../resource/assets/bootstrap/css/jquery-ui.css">
+    <script src="../../../resource/assets/bootstrap/js/jquery.js"></script>
+    <script src="../../../resource/assets/bootstrap/js/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- required for search, block3 of 5 end -->
 
 </head>
 
@@ -56,7 +69,7 @@ $singleData = $obj->baby_taken_vaccine($usercell);
                             <a href="index_baby.php" class="w3-bar-item w3-button" style="text-decoration: none">Baby</a>
                         </div>
                     </div>
-                    <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a>
+                    <!-- <a href="#" class="w3-bar-item w3-button" style="text-decoration: none">Update Profile</a> -->
                     <a href="trashed.php" class="w3-bar-item w3-button" style="text-decoration: none; display: none;">Trash List</a>
                     <span style="text-align: right">
                         <a href="../User/Authentication/moderator_logout.php" class="w3-bar-item w3-button" style="text-decoration: none"> Logout </a>
@@ -65,6 +78,20 @@ $singleData = $obj->baby_taken_vaccine($usercell);
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <?php
+                echo "<div style='background-color: lightskyblue; border-radius: 5%; font-family: Comic Sans MS;'>
+                                <div id='message' class='text-center'>
+                                  <strong> $msg </strong>
+                                </div>
+                           </div>";
+                ?>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
     </div>
     <div class="w3-container">
 
@@ -72,129 +99,165 @@ $singleData = $obj->baby_taken_vaccine($usercell);
             <div style="min-height: 100px;"></div>
             <div class="w3-container w3-quarter"></div>
 
-            <div class="w3-card-4 w3-half" style='margin-bottom: 200px;'>
+            <div class="w3-card-4 w3-half" style='margin-bottom: 200px; padding-bottom: 30px;'>
 
                 <header class="w3-container w3-blue">
                     <h2>Baby Taken Vaccine Info</h2>
                 </header>
 
                 <?php
-                // echo $vaccine->status;
+
                 $arraynames = array("Select", "BCG, Hepatitis B", "OPV-0", "OPV-1, Hepatitis B-1, DPT-1", "OPV-2, Hepatitis B-2, DPT-2", "OPV-3, Hepatitis B-3, DPT-3", "Measles, Vitamin-A(Dose-1)", "Vitamin-A(Dose-2)", "Vitamin-A(Dose-3)", "Vitamin-A(Dose-4)", "Vitamin-A(Dose-5)", "Vitamin-A(Dose-6)", "Vitamin-A(Dose-7)", "Vitamin-A(Dose-8)", "Vitamin-A(Dose-9)", "DT Boaster", "TT");
 
-                if($singleData == null){
+                if ($singleData == null) {
                     $final_status = 'x';
                 } else {
                     foreach ($singleData as $vaccine) {
                         if ($usercell == $vaccine->cell) {
-                            echo "
-                                <div class='col-md-12' style='margin-top: 5px; text-align: right;'>
-                                    
-                                </div>
-                                <ul class='w3-ul w3-card-4'>
-                                    <li class='w3-padding-64'>";
-                                        if ($vaccine->numbers == '2') {
-    
-                                            $values = $vaccine->number;
-                                            $status = $vaccine->status;
-                                            
-                                            $final_value = $values;
-                                            $final_status = $status;
-                                            $final_date = $vaccine->ndate;
-    
-                                            
-                                            $final_id = $vaccine->id;
-                                            $final_cell = $vaccine->cell;
-                                            //$final_vaccine = $vaccine->vaccine;
-                                            
-                                            $v = intval($values);
-                                            $values = intval($v);
-                                            $values = $values - 1;
-    
-                                            $value = strval($values);
-                                            echo "<span class='w3-xlarge'>Vaccine: $arraynames[$values]</span><br><br>";
-                                            echo "<span class='w3-large'>Taken Date: $vaccine->pdate </span><br> ";
-                                        } else if ($vaccine->numbers == '1') {
-                                            $values = $vaccine->number;
-                                            $status = $vaccine->status;
-    
-                                            $final_value = $values;
-                                            $final_status = $status;
-    
-                                            $final_date = $vaccine->ndate;
-    
-                                            
-                                            // $final_id = $vaccine->id;
-                                            // $final_cell = $vaccine->cell;
-                                            //$final_vaccine = $vaccine->vaccine;
-                                            
-                                            $v = intval($values);
-                                            $values = intval($v);
-                                            $values = $values - 1;
-    
-                                            $value = strval($values);
-    
-                                        } else {
-                                            $final_num = $vaccine->number;
-                                            // echo $final_vaccine;
-    
-                                            echo "<span class='w3-xlarge'>Vaccine: $arraynames[$final_num]</span><br><br>";
-                                            echo "<span class='w3-large'>Taken Date: $vaccine->ndate</span><br>";
-                                        }
-                            echo "</li>
-                                </ul>
-                            ";
-                        }
-                    }   
-                }       
-                
-                if($final_status == 'x')
-                {
-                    echo "<h4>No Vaccine Schedule Found.</h4>";
-                } else {
-                    if($final_status == '0') {
-                        if ($final_value != '17') {
-                            echo "
-                                <div class='col-md-12' style='margin-top: 5px; text-align: right; display: none;'>
-                                        <a href='edit.php?id=$vaccine->id' type='button' class='btn btn-primary'>Edit Info</a>
-                                </div>
-                                <ul class='w3-ul w3-card-4'>
-                                    <li class='w3-padding-64'>
-                                        <span class='w3-label-lg w3-red' style='padding: 5px;'>Pending</span><br>
-                                        <span class='w3-xxlarge'>Vaccine: $arraynames[$final_value] </span><br>
-                                        <div class='col-md-5'>
-                                            <span class='w3-large'>Schedule Date: $final_date</span><br><br>
-                                        </div>
-                                        <div class='col-md-7'>
-                                            <span class='w3-large'>
-                                                    <form class='form-horizontal' action='store_baby_taken_vaccine.php' method='post'>
-    
-                                                        <input type='hidden' class='form-control' id='number' name='number' value='$final_value'>
-                                                        <input type='hidden' class='form-control' id='BF_Cell' name='BF_Cell' value='$usercell'>
-    
-                                                        <div class='form-group'>
-                                                            <label class='col-sm-3 w3-text-green' for='taken'>Taken: </label>
-                                                            <div class='col-sm-9'>
-                                                                <span>
-                                                                    <input type='radio' name='taken' value='1' required> Yes 
-                                                                </span>
-                                                                <button type='submit' name='submit' class='btn btn-default' onclick='return confirm_mobile()'>Done</button>
-                                                            </div>
-                                                        </div>  
-    
-                                                    </form>
-                                            </span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            ";
-                        } else {
-                            echo "<h2>All vaccines have been taken </h2>";
-                        }
-                    } else {
 
+                            echo "
+                                <div class='row' style='margin-top: 10px;'>
+                                <div class='col-sm-1'></div>
+                                <div class='col-sm-10'>
+                                    <table class='w3-table'>
+                                        <thead>
+                                            <tr class='text-center'>";
+                            if ($vaccine->numbers == '2') {
+
+                                $values = $vaccine->number;
+                                $status = $vaccine->status;
+
+                                $final_value = $values;
+                                $final_status = $status;
+                                $final_date = $vaccine->ndate;
+
+                                $v = intval($values);
+                                $values = intval($v);
+
+                                $values = $values - 1;
+                                $value = strval($values);
+                                echo "
+                                                        <th width='30%'>Vaccine</th>
+                                                        <td width='10%'>:</td>
+                                                        <td>$arraynames[$values]</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Taken Date</th>
+                                                        <td>:</td>
+                                                        <td>$vaccine->pdate</td>
+                                                ";
+                            } else if ($vaccine->numbers == '1') {
+                                $values = $vaccine->number;
+                                $status = $vaccine->status;
+
+                                $final_value = $values;
+                                $final_status = $status;
+                                $final_date = $vaccine->ndate;
+
+                                $v = intval($values);
+                                $values = intval($v);
+                                $values = $values - 1;
+                                $value = strval($values);
+                            } else {
+                                $final_num = $vaccine->number;
+                                echo "
+                                                    <th width='30%'>Vaccine</th>
+                                                    <td width='10%'>:</td>
+                                                    <td>$arraynames[$final_num]</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Taken Date</th>
+                                                    <td>:</td>
+                                                    <td>$vaccine->ndate</td>
+                                                ";
+                            }
+
+                            echo "</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class='col-sm-1'></div>
+                            </div>
+                            ";
+                        }
                     }
                 }
+
+
+                if ($final_status == 'x') {
+                    echo "
+                        <div class='row' style='margin: 20px;'>
+                            <h4>No Vaccine Schedule Found.</h4>
+                        </div>
+                    ";
+                } else {
+                    //  if ($usercell == $vaccine->cell) {
+                    if ($final_status == '0') {
+                        if ($final_value != '17') {
+                            echo "
+                                <div class='row' style='margin-top: 10px;'>
+                                    <div class='col-sm-1'></div>
+                                    <div class='col-sm-10'>
+                                    <hr>
+                                        <table class='w3-table'>
+                                            <thead>
+                                                    <tr>
+                                                        <td>
+                                                            <span class='w3-label-lg w3-red' style='padding: 5px'>Pending</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class='text-center'> 
+                                                        <th width='30%'>Vaccine</th>
+                                                        <td width='10%'>:</td>
+                                                        <td>$arraynames[$final_value]</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Schedule Date</th>
+                                                        <td>:</td>
+                                                        <td>$final_date</td>
+                                                        <td width='30%'>
+                                                            <form class='form-horizontal' action='store_baby_taken_vaccine.php' method='post'>
+                                                                <div class='form-group' style='display: none;'>
+                                                                    <input type='hidden' class='form-control' id='number' name='number' value='$final_value'>
+                                                                    <input type='hidden' class='form-control' id='BF_Cell' name='BF_Cell' value='$usercell'>
+                                                                </div> 
+            
+                                                                <div class='form-group'>
+                                                                    <label class='col-sm-4 w3-text-green' for='taken'>Taken: </label>
+                                                                    <div class='col-sm-8'>
+                                                                        <input type='radio' name='taken' value='1' required> Yes
+                                                                    </div>
+                                                                </div>
+                                                                <button type='submit' name='submit' class='btn btn-default' onclick='return confirm_mobile()'>Done</button>
+                                                                
+            
+                                                            </form>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class='col-sm-1'></div>
+                                </div>
+                                ";
+                        } else {
+                            echo "
+                                <div class='row' style='margin: 20px;'>
+                                    <h2>All vaccines have been taken </h2>
+                                </div>
+                            ";
+                        }
+                    } else {
+                    }
+                }
+                // }
                 ?>
             </div>
             <div class="w3-container w3-quarter"></div>
@@ -239,6 +302,25 @@ $singleData = $obj->baby_taken_vaccine($usercell);
         function confirm_mobile() {
             return confirm('User need to confirm from Mobile Apps...');
         }
+    </script>
+
+    <script>
+        jQuery(
+
+            function($) {
+                $('#message').fadeOut(550);
+                $('#message').fadeIn(550);
+                $('#message').fadeOut(550);
+                $('#message').fadeIn(550);
+                $('#message').fadeOut(550);
+                $('#message').fadeIn(550);
+                $('#message').fadeOut(550);
+            }
+        )
+    </script>
+
+    <script>
+        $('.alert').slideDown("slow").delay(2000).slideUp("slow");
     </script>
 
 
