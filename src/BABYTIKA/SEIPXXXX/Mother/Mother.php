@@ -217,7 +217,7 @@ class Mother extends Database
 
         // $query = "SELECT * FROM `vaccine` INNER JOIN `mother` ON vaccine.cell = mother.M_Cell WHERE vaccine.numbers <> 1 ORDER BY `number` ASC";
 
-        $query = "SELECT m.id, v.cell, v.pdate, v.ndate, v.number, v.numbers, v.status, v.status_date, m.M_Cell FROM vaccine AS v INNER JOIN mother AS m ON v.cell = m.M_Cell WHERE v.cell = $ucell ORDER BY v.number ASC";
+        $query = "SELECT m.id, m.M_Email, v.final_date, v.cell, v.pdate, v.ndate, v.number, v.numbers, v.status, v.status_date, m.M_Cell FROM vaccine AS v INNER JOIN mother AS m ON v.cell = m.M_Cell WHERE v.cell = $ucell ORDER BY v.number ASC";
 
         $STH = $this->DBH->query($query);
 

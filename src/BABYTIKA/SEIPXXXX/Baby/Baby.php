@@ -221,7 +221,7 @@ class Baby extends Database
 
         // $query = "SELECT * FROM `vaccine_baby` INNER JOIN `baby` ON vaccine_baby.cell = baby.BF_Cell WHERE vaccine_baby.numbers <> 1 ORDER BY `number` ASC";
 
-        $query = "SELECT b.id, vb.cell, vb.pdate, vb.ndate, vb.number, vb.numbers, vb.vaccine, vb.status, vb.status_date, b.BF_Cell FROM vaccine_baby AS vb INNER JOIN baby AS b ON vb.cell = b.BF_Cell WHERE vb.cell = $ucell ORDER BY vb.number ASC";
+        $query = "SELECT b.id, b.BM_Email, vb.final_date, vb.cell, vb.pdate, vb.ndate, vb.number, vb.numbers, vb.vaccine, vb.status, vb.status_date, b.BF_Cell FROM vaccine_baby AS vb INNER JOIN baby AS b ON vb.cell = b.BF_Cell WHERE vb.cell = $ucell ORDER BY vb.number ASC";
 
         
         

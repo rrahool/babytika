@@ -133,6 +133,10 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                                 $final_status = $status;
                                 $final_date = $vaccine->ndate;
 
+                                //this final_date is from database
+                                $last_date = $vaccine->final_date;
+                                $email = $vaccine->M_Email;
+
                                 $v = intval($values);
                                 $values = intval($v);
 
@@ -157,6 +161,10 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                                 $final_value = $values;
                                 $final_status = $status;
                                 $final_date = $vaccine->ndate;
+
+                                //this final_date is from database
+                                $last_date = $vaccine->final_date;
+                                $email = $vaccine->M_Email;
 
                                 $v = intval($values);
                                 $values = intval($v);
@@ -238,6 +246,28 @@ $singleData = $obj->mother_taken_vaccine($usercell);
                                                                 <button type='submit' name='submit' class='btn btn-default' onclick='return confirm_mobile()'>Done</button>
                                                                 
             
+                                                            </form>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td><br/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Last Date</th>
+                                                        <td>:</td>
+                                                        <td>$last_date</td>
+                                                        <td width='30%'>
+                                                            <form class='form-horizontal' action='send_email_alert_mother.php' method='post'>
+                                                                <div class='form-group' style='display: none;'>
+                                                                    <input type='hidden' class='form-control' id='usercell' name='usercell' value='$usercell'>
+                                                                    <input type='hidden' class='form-control' id='final_value' name='final_value' value='TT-$final_value'>
+                                                                    <input type='hidden' class='form-control' id='last_date' name='last_date' value='$last_date'>
+                                                                    <input type='hidden' class='form-control' id='email' name='email' value='$email'>
+                                                                </div> 
+            
+                                                                <button type='submit' name='submit' class='btn btn-primary'>Send Email Alert</button>
+
                                                             </form>
                                                         </td>
                                                         

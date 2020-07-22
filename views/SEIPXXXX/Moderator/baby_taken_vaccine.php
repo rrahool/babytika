@@ -204,7 +204,7 @@ $singleData = $obj->baby_taken_vaccine($usercell);
                                     <div class='col-sm-10'>
                                     <hr>
                                         <table class='w3-table'>
-                                            <thead>
+                                                <thead>
                                                     <tr>
                                                         <td>
                                                             <span class='w3-label-lg w3-red' style='padding: 5px'>Pending</span>
